@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sáng kiến TD&amp;KT Quốc tế — Chiến lược PVN 2030 · PVEP Ban KSNB</title>
+
+<!-- Fonts: Sora (display) + Be Vietnam Pro (body) — both ship a Vietnamese subset -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   THEME TOKENS  (PVEP brand · Light Executive)
+   ============================================================ */
+:root{
+  --pvep-blue:#0083C7; --pvep-green:#00B050; --pvep-navy:#0A2A4A;
+  --ink-900:#1E293B; --ink-700:#334155; --ink-600:#475569; --ink-500:#64748B;
+  --bg-100:#F1F5F9; --white:#FFFFFF;
+  --danger:#DC2626; --warning:#EA580C; --caution:#D97706; --success:#15803D; --info:#1D4ED8;
+
+  --font-display:"Sora", system-ui, sans-serif;
+  --font-body:"Be Vietnam Pro", system-ui, sans-serif;
+
+  --ac-accent:#0083C7; --ac-accent-2:#00B050; --ac-accent-3:#0A2A4A; --ac-accent-4:#1D4ED8;
+  --ac-fg:#1E293B; --ac-muted:#64748B;
+  --ac-track:rgba(10,42,74,.10); --ac-line:rgba(10,42,74,.14);
+  --ac-ease:cubic-bezier(.22,.8,.18,1); --ac-ease-bounce:cubic-bezier(.34,1.56,.64,1);
+  --ac-dur:.8s; --ac-stagger:80ms;
+
+  --rail:260px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ============================================================
+   viewport-base.css
+   ============================================================ */
+html, body{ height:100%; overflow-x:hidden; }
+html{ scroll-snap-type:y mandatory; scroll-behavior:smooth; }
+.slide{
+  width:100vw; height:100vh; height:100dvh; overflow:hidden;
+  scroll-snap-align:start; display:flex; flex-direction:column; position:relative;
+}
+.slide-content{
+  flex:1; display:flex; flex-direction:column; justify-content:center;
+  max-height:100%; overflow:hidden; padding:var(--slide-padding);
+}
+:root{
+  --title-size:clamp(1.8rem, 6vh, 4rem);
+  --h2-size:clamp(1.5rem, 4.5vh, 3rem);
+  --h3-size:clamp(1.2rem, 3.5vh, 2.25rem);
+  --body-size:clamp(1.05rem, 2.8vh, 1.875rem);
+  --small-size:clamp(0.85rem, 2.2vh, 1.5rem);
+  --slide-padding:clamp(1.2rem, 4.5vh, 4.5rem);
+  --content-gap:clamp(0.8rem, 2.5vh, 2.5rem);
+  --element-gap:clamp(0.4rem, 1.5vh, 1.5rem);
+}
+.card,.container,.content-box{ max-width:min(95vw,1400px); max-height:min(88vh,850px); }
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:clamp(0.5rem,1.5vw,1rem); }
+img,.image-container{ max-width:100%; max-height:min(50vh,400px); object-fit:contain; }
+@media (max-height:700px){ :root{ --slide-padding:clamp(0.75rem,3vw,2rem); --content-gap:clamp(0.4rem,1.5vw,1rem); --title-size:clamp(1.25rem,4.5vw,2.5rem); --h2-size:clamp(1rem,3vw,1.75rem); } }
+@media (max-height:600px){ :root{ --slide-padding:clamp(0.5rem,2.5vw,1.5rem); --content-gap:clamp(0.3rem,1vw,0.75rem); --title-size:clamp(1.1rem,4vw,2rem); --body-size:clamp(0.7rem,1.2vw,0.95rem); } .nav-dots,.keyboard-hint,.decorative{ display:none; } }
+@media (max-width:600px){ :root{ --title-size:clamp(1.25rem,7vw,2.5rem); } .grid{ grid-template-columns:1fr; } }
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{ animation-duration:0.01ms!important; transition-duration:0.2s!important; } html{ scroll-behavior:auto; } }
+
+/* ============================================================
+   animation-core.css — gated on slide entry (.ac-on), replays
+   ============================================================ */
+.ac-reveal{ opacity:0; }
+.ac-reveal--up{ transform:translateY(28px); }
+.ac-reveal--down{ transform:translateY(-28px); }
+.ac-reveal--left{ transform:translateX(-32px); }
+.ac-reveal--right{ transform:translateX(32px); }
+.ac-reveal--zoom{ transform:scale(.86); }
+.ac-on .ac-reveal{ animation:ac-fade-up var(--ac-dur) var(--ac-ease) both; animation-delay:calc(var(--i,0)*var(--ac-stagger) + var(--ac-delay,0ms)); }
+.ac-on .ac-reveal--left,.ac-on .ac-reveal--right{ animation-name:ac-fade-x; }
+.ac-on .ac-reveal--down{ animation-name:ac-fade-down; }
+.ac-on .ac-reveal--zoom{ animation-name:ac-zoom-in; animation-timing-function:var(--ac-ease-bounce); }
+@keyframes ac-fade-up{ from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:none;} }
+@keyframes ac-fade-down{ from{opacity:0;transform:translateY(-28px);} to{opacity:1;transform:none;} }
+@keyframes ac-fade-x{ from{opacity:0;} to{opacity:1;transform:none;} }
+@keyframes ac-zoom-in{ from{opacity:0;transform:scale(.86);} to{opacity:1;transform:scale(1);} }
+.ac-pop{ opacity:0; transform:scale(.4); }
+.ac-on .ac-pop{ animation:ac-pop var(--ac-dur) var(--ac-ease-bounce) both; animation-delay:calc(var(--i,0)*var(--ac-stagger) + var(--ac-delay,0ms)); }
+@keyframes ac-pop{ from{opacity:0;transform:scale(.4);} to{opacity:1;transform:scale(1);} }
+.ac-bar{ height:0; transition:height .9s var(--ac-ease); transition-delay:calc(var(--i,0)*var(--ac-stagger)); }
+.ac-on .ac-bar{ height:var(--h); }
+.ac-fill-x{ width:0; transition:width .9s var(--ac-ease); transition-delay:calc(var(--i,0)*var(--ac-stagger)); }
+.ac-on .ac-fill-x{ width:var(--w); }
+.ac-draw{ stroke-dasharray:var(--len); stroke-dashoffset:var(--len); }
+.ac-on .ac-draw{ animation:ac-draw 1.1s var(--ac-ease) forwards; animation-delay:calc(var(--i,0)*var(--ac-stagger)); }
+@keyframes ac-draw{ to{ stroke-dashoffset:0; } }
+.ac-float{ animation:ac-float 6s ease-in-out infinite; }
+@keyframes ac-float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.ac-shimmer{ background-size:200% 100%; animation:ac-shimmer 3.5s linear infinite; }
+@keyframes ac-shimmer{ to{ background-position:-200% 0; } }
+.ac-caret{ border-right:.08em solid var(--ac-accent); animation:ac-blink 1s steps(1) infinite; }
+@keyframes ac-blink{ 50%{ border-color:transparent; } }
+@media (prefers-reduced-motion:reduce){
+  .ac-reveal,.ac-pop{ opacity:1!important; transform:none!important; }
+  .ac-bar{ height:var(--h)!important; } .ac-fill-x{ width:var(--w)!important; }
+  .ac-draw{ stroke-dashoffset:0!important; }
+  .ac-float,.ac-shimmer,.ac-caret{ animation:none!important; }
+  *{ transition-duration:.001s!important; }
+}
+
+/* ============================================================
+   GLOBAL LOOK
+   ============================================================ */
+body{
+  font-family:var(--font-body); color:var(--ink-600);
+  background:
+    radial-gradient(1100px 760px at 82% -12%, rgba(0,131,199,.10), transparent 60%),
+    radial-gradient(940px 680px at -8% 112%, rgba(0,176,80,.09), transparent 55%),
+    linear-gradient(135deg,#FFFFFF 0%, #EEF3F8 100%);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{ width:min(95%, 1650px); margin-inline:auto; position:relative; z-index:2; }
+.wrap--wide{ width:min(98%, 1850px); }
+@media (min-width:1000px){ .slide-content{ padding-left:calc(var(--slide-padding) + var(--rail)); } }
+
+.head-center{ text-align:center; display:flex; flex-direction:column; gap:.45rem; align-items:center; margin-bottom:clamp(.6rem,2.2vh,1.4rem); }
+.eyebrow{ font-family:var(--font-display); font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--pvep-blue); font-size:clamp(.62rem,1vw,.82rem); }
+.s-title{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1.4rem,3.6vw,2.7rem); line-height:1.08; letter-spacing:-.01em; }
+.s-title--sm{ font-size:clamp(1.2rem,2.8vw,2rem); }
+.neo{ color:var(--pvep-blue); } .neo-g{ color:var(--pvep-green); }
+.lead-note{ text-align:center; color:var(--ink-600); font-size:var(--body-size); max-width:70ch; margin:.2rem auto 0; line-height:1.45; }
+.lead-note b{ color:var(--ink-900); }
+
+/* ----- Left chapter rail ----- */
+.rail{
+  position:fixed; inset:0 auto 0 0; width:var(--rail); height:100vh; height:100dvh; z-index:50;
+  display:flex; flex-direction:column; justify-content:center; gap:.15rem; padding:1.4rem 1rem;
+  background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(238,243,248,.86));
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-right:1px solid rgba(10,42,74,.10);
+}
+.rail__brand{ display:flex; align-items:center; gap:.55rem; margin-bottom:.2rem; }
+.rail__title{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:.92rem; line-height:1; }
+.rail__sub{ font-size:.58rem; color:var(--ink-500); text-transform:uppercase; letter-spacing:.16em; margin:.15rem 0 1.1rem; }
+.rail__item{ display:flex; gap:.55rem; align-items:center; padding:.5rem .55rem; border-radius:10px; cursor:pointer; color:var(--ink-500); font-size:.74rem; font-weight:600; line-height:1.2; transition:color .25s, background .25s; }
+.rail__item .dot{ width:7px; height:7px; border-radius:50%; background:var(--ac-track); flex:none; transition:background .25s, box-shadow .25s; }
+.rail__num{ font-family:var(--font-display); font-weight:700; opacity:.45; font-size:.7rem; min-width:1.1em; }
+.rail__item:hover{ color:var(--ink-700); background:rgba(0,131,199,.06); }
+.rail__item.is-active{ color:var(--pvep-blue); background:rgba(0,131,199,.10); }
+.rail__item.is-active .dot{ background:var(--pvep-blue); box-shadow:0 0 0 4px rgba(0,131,199,.16); }
+.rail__item.is-active .rail__num{ opacity:1; color:var(--pvep-blue); }
+@media (max-width:999px){ .rail{ display:none; } }
+body.hero-active .rail{
+  background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.07));
+  backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  border-right-color:rgba(255,255,255,.40);
+  transition:background .5s var(--ac-ease), border-color .5s var(--ac-ease);
+}
+body.hero-active .rail__title,
+body.hero-active .rail__sub,
+body.hero-active .rail__item{ text-shadow:0 1px 7px rgba(255,255,255,.65); }
+body.hero-active .rail__item.is-active{ background:rgba(255,255,255,.22); }
+
+/* ----- Counter + progress + hint ----- */
+.counter{ position:fixed; top:1.05rem; right:1.4rem; z-index:60; font-family:var(--font-display); font-weight:700; color:var(--pvep-navy); font-size:.95rem; letter-spacing:.03em; background:rgba(255,255,255,.72); padding:.32rem .8rem; border-radius:999px; border:1px solid rgba(10,42,74,.12); backdrop-filter:blur(6px); }
+.counter #cur{ color:var(--pvep-blue); } .counter .sep{ opacity:.4; margin:0 .18rem; }
+.progress{ position:fixed; top:0; left:0; height:3px; width:100%; z-index:61; background:transparent; }
+.progress__fill{ height:100%; width:0; background:linear-gradient(90deg,var(--pvep-blue),var(--pvep-green)); transition:width .45s var(--ac-ease); }
+.hint{ position:fixed; bottom:.9rem; right:1.4rem; z-index:55; font-size:.66rem; color:var(--ink-500); letter-spacing:.04em; }
+@media (max-width:999px){ .hint{ display:none; } }
+
+/* ----- Static offshore background (content slides) ----- */
+.oilbg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  background:#eef3f8 url("assets/offshore-still.jpg") center center / cover no-repeat; }
+.oilbg::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg, rgba(255,255,255,.82) 0%, rgba(255,255,255,.72) 42%, rgba(238,243,248,.76) 74%, rgba(0,131,199,.10) 100%); }
+
+/* ----- Explosive emphasis utilities ----- */
+.s-title{ position:relative; }
+.s-title::before{ content:""; position:absolute; left:50%; top:50%; width:140%; height:200%; transform:translate(-50%,-50%) scale(.25); border-radius:50%; background:radial-gradient(ellipse,rgba(0,131,199,.16),rgba(0,176,80,.06) 45%,transparent 72%); opacity:0; z-index:-1; pointer-events:none; }
+.ac-on .s-title::before{ animation:flashBurst 1.1s var(--ac-ease) .12s forwards; }
+@keyframes flashBurst{ 0%{opacity:0;transform:translate(-50%,-50%) scale(.2)} 35%{opacity:1} 100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)} }
+@keyframes textShine{ to{ background-position:220% 0; } }
+@keyframes boomIn{ 0%{opacity:0;transform:scale(.5);filter:blur(20px)} 55%{opacity:1;filter:blur(0)} 80%{transform:scale(1.07)} 100%{opacity:1;transform:scale(1)} }
+@keyframes glowPulse{ 0%,100%{text-shadow:0 0 0 rgba(0,131,199,0)} 50%{text-shadow:0 0 28px rgba(0,131,199,.55)} }
+@keyframes ping{ 0%{ box-shadow:0 0 0 0 rgba(0,176,80,.5); } 100%{ box-shadow:0 0 0 16px rgba(0,176,80,0); } }
+.ac-on .ac-pulse{ animation:pulseWarn 1.4s ease-in-out infinite; }
+@keyframes pulseWarn{ 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.55; transform:scale(1.04); } }
+
+/* ============================================================
+   HERO (slide 1)
+   ============================================================ */
+.hero__word{ font-family:var(--font-display); font-weight:800; line-height:1; letter-spacing:-.02em; position:relative;
+  font-size:clamp(2rem,6vw,4.6rem);
+  background:linear-gradient(120deg,var(--pvep-navy) 0%,var(--pvep-blue) 45%,var(--pvep-green) 65%,var(--pvep-blue) 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.ac-on .hero__word{ animation:heroIn 1.3s var(--ac-ease-bounce) .08s both, textShine 5s linear 1.4s infinite; }
+@keyframes heroIn{ 0%{opacity:0;transform:scale(.5);filter:blur(26px)} 55%{opacity:1;filter:blur(0)} 80%{transform:scale(1.08)} 100%{opacity:1;transform:scale(1);filter:blur(0)} }
+.hero__amp{ font-family:var(--font-display); font-weight:700; color:var(--ink-700); font-size:clamp(.85rem,2.4vw,1.6rem); letter-spacing:.05em; margin-top:.5rem; }
+.hero__tag{ color:var(--ink-600); font-size:clamp(.9rem,2vw,1.32rem); margin:1.3rem auto 0; max-width:52ch; min-height:1.7em; line-height:1.45; }
+.hero__by{ margin-top:1.5rem; color:var(--ink-500); font-size:clamp(.8rem,1.4vw,1rem); font-weight:600; }
+.badge-row{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+.chip{ font-family:var(--font-display); font-weight:700; font-size:clamp(.78rem,1.5vw,1rem); color:#fff; background:linear-gradient(135deg,var(--pvep-blue),var(--info)); padding:.5rem 1.1rem; border-radius:999px; box-shadow:0 8px 22px rgba(0,131,199,.28); }
+
+/* ============================================================
+   SHARED CARDS
+   ============================================================ */
+.cards{ display:grid; gap:clamp(.7rem,1.6vw,1.1rem); }
+.cards--3{ grid-template-columns:repeat(3,1fr); }
+.card4{ background:#fff; border:1px solid var(--ac-line); border-radius:16px; padding:clamp(.9rem,1.8vw,1.3rem); box-shadow:0 12px 34px rgba(10,42,74,.06); display:flex; flex-direction:column; gap:.45rem; position:relative; overflow:hidden; }
+.card4__ic{ width:42px; height:42px; border-radius:12px; display:grid; place-content:center; background:linear-gradient(135deg,rgba(0,131,199,.13),rgba(0,176,80,.13)); color:var(--pvep-blue); transition:background .4s var(--ac-ease), color .4s var(--ac-ease), transform .4s var(--ac-ease-bounce), box-shadow .4s var(--ac-ease); }
+.card4__ic svg{ width:24px; height:24px; transition:transform .4s var(--ac-ease-bounce); }
+.card4:hover .card4__ic{ background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; transform:scale(1.08); box-shadow:0 6px 16px rgba(0,131,199,.25); }
+.card4:hover .card4__ic svg{ transform:rotate(12deg) scale(1.15); }
+.card4 h4{ font-family:var(--font-display); color:var(--pvep-navy); font-weight:800; font-size:clamp(.88rem,1.6vw,1.12rem); line-height:1.15; }
+.card4 p{ color:var(--ink-600); font-size:var(--small-size); line-height:1.38; }
+.card4, .tri__card, .stat, .imp, .ms-card, .pol__card, .gov__p, .chip{ transition:transform .3s, box-shadow .3s, border-color .3s; }
+.card4:hover, .tri__card:hover, .stat:hover, .imp:hover, .ms-card:hover, .pol__card:hover, .gov__p:hover{
+  transform:translateY(-6px); box-shadow:0 22px 50px rgba(0,131,199,.18) !important; border-color:var(--pvep-blue) !important; z-index:10;
+}
+.tri__card{ background:#fff; border:1px solid var(--ac-line); border-top:4px solid var(--pvep-blue); border-radius:16px; padding:clamp(.9rem,2vw,1.3rem); box-shadow:0 12px 36px rgba(10,42,74,.06); display:flex; flex-direction:column; text-align:left; }
+.tri__k{ display:block; font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.95rem,1.9vw,1.25rem); margin-bottom:.4rem; }
+.rlist{ list-style:none; display:flex; flex-direction:column; gap:.4rem; }
+.rlist li{ position:relative; padding-left:1.2rem; font-size:var(--small-size); color:var(--ink-600); line-height:1.34; }
+.rlist li::before{ content:""; position:absolute; left:0; top:.5em; width:7px; height:7px; border-radius:2px; background:var(--pvep-blue); }
+.rlist--g li::before{ background:var(--pvep-green); border-radius:50%; }
+.rlist--warn li::before{ background:var(--warning); }
+.rlist b{ color:var(--ink-900); font-weight:700; }
+.kchips{ display:flex; flex-wrap:wrap; gap:.25rem; margin-top:.3rem; }
+.kchip{ font-size:.6rem; font-weight:600; background:var(--bg-100); border:1px solid var(--ac-line); border-radius:99px; padding:.1rem .5rem; color:var(--ink-700); }
+.note{ text-align:center; margin-top:clamp(.7rem,2.4vh,1.4rem); font-size:clamp(.72rem,1.3vw,.9rem); color:var(--caution); background:rgba(217,119,6,.08); border:1px dashed rgba(217,119,6,.4); border-radius:10px; padding:.6rem 1rem; max-width:80ch; margin-inline:auto; }
+.note--info{ color:var(--info); background:rgba(29,78,216,.07); border-color:rgba(29,78,216,.35); }
+
+/* ============================================================
+   SLIDE 2 — Strategy stats
+   ============================================================ */
+.statgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.7rem,1.6vw,1.1rem); }
+.stat{ background:#fff; border:1px solid var(--ac-line); border-radius:18px; padding:clamp(.9rem,2vw,1.4rem); text-align:center; box-shadow:0 12px 32px rgba(10,42,74,.06); }
+.stat__n{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.7rem,4.4vw,3rem); line-height:1; color:var(--pvep-blue); white-space:nowrap; }
+.stat__n .un{ font-size:.42em; font-weight:700; color:var(--ink-500); margin-left:.15em; }
+.stat--g .stat__n{ color:var(--pvep-green); }
+.stat--n .stat__n{ color:var(--pvep-navy); }
+.stat__l{ color:var(--ink-700); font-weight:700; font-size:var(--small-size); margin-top:.4rem; line-height:1.25; }
+.stat__s{ color:var(--ink-500); font-size:clamp(.66rem,1.2vw,.82rem); margin-top:.2rem; line-height:1.3; }
+
+/* ============================================================
+   SLIDE 3 — 6 opportunity groups
+   ============================================================ */
+.opp-win{ border-color:rgba(0,176,80,.5) !important; box-shadow:0 18px 48px rgba(0,176,80,.16); background:linear-gradient(180deg,#fff,#f3fff8); }
+.opp-ribbon{ position:absolute; top:13px; right:-34px; transform:rotate(45deg); background:linear-gradient(135deg,var(--pvep-green),#0a7d3a); color:#fff; font-family:var(--font-display); font-weight:800; font-size:.58rem; letter-spacing:.06em; padding:.28rem 2.6rem; box-shadow:0 6px 16px rgba(0,176,80,.35); }
+.opp-no{ font-family:var(--font-display); font-weight:800; color:rgba(10,42,74,.18); font-size:clamp(1.2rem,2.6vw,1.8rem); line-height:1; position:absolute; top:.6rem; right:.8rem; }
+
+/* ============================================================
+   SLIDE 4 — 16 initiatives + impact
+   ============================================================ */
+.duo16{ display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(.9rem,2.2vw,1.8rem); align-items:stretch; }
+.panel{ background:#fff; border:1px solid var(--ac-line); border-radius:18px; padding:clamp(1rem,2.2vw,1.6rem); box-shadow:0 14px 40px rgba(10,42,74,.07); }
+.panel__t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.92rem,1.7vw,1.18rem); display:flex; align-items:center; gap:.5rem; margin-bottom:.7rem; }
+.panel__t .ti{ width:8px; height:8px; border-radius:50%; background:var(--pvep-blue); flex:none; }
+.cbar{ margin-bottom:.7rem; }
+.cbar__h{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.25rem; }
+.cbar__n{ font-family:var(--font-display); font-weight:700; color:var(--ink-700); font-size:var(--small-size); }
+.cbar__v{ font-family:var(--font-display); font-weight:800; font-size:clamp(1rem,2vw,1.4rem); color:var(--pvep-blue); }
+.cbar__track{ height:clamp(16px,2.6vh,26px); background:var(--bg-100); border:1px solid var(--ac-line); border-radius:99px; overflow:hidden; }
+.cbar__fill{ height:100%; border-radius:99px; background:linear-gradient(90deg,var(--pvep-blue),#005f91); }
+.cbar--g .cbar__v{ color:var(--pvep-green); } .cbar--g .cbar__fill{ background:linear-gradient(90deg,var(--pvep-green),#0a7d3a); }
+.cbar--n .cbar__v{ color:var(--pvep-navy); } .cbar--n .cbar__fill{ background:linear-gradient(90deg,var(--pvep-navy),#13314f); }
+.imp-list{ display:flex; flex-direction:column; gap:.45rem; }
+.imp{ display:grid; grid-template-columns:auto 1fr; gap:.2rem .9rem; align-items:center; background:#fff; border:1px solid var(--ac-line); border-left:4px solid var(--pvep-blue); border-radius:12px; padding:.5rem .9rem; box-shadow:0 8px 22px rgba(10,42,74,.05); }
+.imp__n{ font-family:var(--font-display); font-weight:800; color:var(--pvep-blue); font-size:clamp(1rem,2.2vw,1.5rem); white-space:nowrap; min-width:7.5em; }
+.imp__t{ color:var(--ink-700); font-size:var(--small-size); font-weight:500; line-height:1.3; }
+.imp--g{ border-left-color:var(--pvep-green); } .imp--g .imp__n{ color:var(--pvep-green); }
+
+/* ============================================================
+   SLIDE 5 — 8+1 enablers
+   ============================================================ */
+.en-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.5rem,1.2vw,.9rem); }
+.en{ background:#fff; border:1px solid var(--ac-line); border-radius:14px; padding:clamp(.65rem,1.4vw,1rem); box-shadow:0 10px 28px rgba(10,42,74,.05); transition:transform .3s, box-shadow .3s, border-color .3s; }
+.en:hover{ transform:translateY(-5px); box-shadow:0 20px 46px rgba(0,131,199,.18); border-color:var(--pvep-blue); }
+.en__h{ display:flex; align-items:center; gap:.5rem; }
+.en__no{ width:24px; height:24px; border-radius:8px; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; font-family:var(--font-display); font-weight:800; font-size:.72rem; display:grid; place-content:center; flex:none; }
+.en__t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.74rem,1.35vw,.98rem); line-height:1.12; }
+.en__d{ color:var(--ink-600); font-size:clamp(.66rem,1.2vw,.85rem); line-height:1.3; margin-top:.3rem; }
+.en__d b{ color:var(--pvep-blue); font-family:var(--font-display); }
+.en--plus{ border-style:dashed; border-color:rgba(0,176,80,.45); background:linear-gradient(180deg,#fff,#f4fff9); }
+.en--plus .en__no{ background:linear-gradient(135deg,var(--pvep-green),#0a7d3a); }
+
+/* ============================================================
+   SLIDE 6 — Governance
+   ============================================================ */
+.gov{ display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(.9rem,2.2vw,1.8rem); align-items:stretch; }
+.gov__tower{ display:flex; flex-direction:column; gap:.4rem; }
+.gtier{ background:#fff; border:1px solid var(--ac-line); border-left:5px solid var(--pvep-blue); border-radius:14px; padding:.6rem 1rem; box-shadow:0 10px 28px rgba(10,42,74,.06); display:flex; align-items:center; gap:.85rem; }
+.gtier__k{ font-family:var(--font-display); font-weight:800; color:#fff; background:var(--pvep-blue); border-radius:10px; padding:.38rem .65rem; font-size:.62rem; letter-spacing:.05em; white-space:nowrap; flex:none; text-align:center; }
+.gtier__t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.85rem,1.6vw,1.1rem); }
+.gtier__d{ color:var(--ink-600); font-size:clamp(.68rem,1.25vw,.88rem); line-height:1.3; }
+.gtier--top{ border-left-color:var(--pvep-navy); } .gtier--top .gtier__k{ background:var(--pvep-navy); }
+.gconn{ text-align:center; color:var(--pvep-blue); font-size:.95rem; line-height:.4; opacity:.6; }
+.gov__p{ background:#fff; border:1px solid rgba(0,176,80,.4); border-radius:18px; padding:clamp(1rem,2.2vw,1.5rem); box-shadow:0 14px 40px rgba(0,176,80,.1); }
+.gp-row{ display:flex; align-items:center; gap:.8rem; padding:.55rem 0; border-bottom:1px dashed var(--ac-line); }
+.gp-row:last-child{ border-bottom:0; }
+.gp-av{ width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; display:grid; place-content:center; font-family:var(--font-display); font-weight:800; font-size:.85rem; flex:none; box-shadow:0 6px 16px rgba(0,131,199,.25); }
+.gp-role{ font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--pvep-blue); }
+.gp-name{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.88rem,1.7vw,1.15rem); line-height:1.15; }
+.gp-sub{ color:var(--ink-500); font-size:clamp(.66rem,1.2vw,.82rem); }
+
+/* ============================================================
+   SLIDE 7 — Charter
+   ============================================================ */
+.charter-big{ text-align:center; margin:.2rem 0 .8rem; }
+.charter-big__n{ font-family:var(--font-display); font-weight:800; font-size:clamp(2rem,6vw,4rem); line-height:1;
+  background:linear-gradient(120deg,var(--pvep-navy),var(--pvep-blue) 45%,var(--pvep-green) 68%,var(--pvep-blue));
+  background-size:220% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.ac-on .charter-big__n{ animation:boomIn 1.1s var(--ac-ease-bounce) .15s both, textShine 5s linear 1.3s infinite; }
+.charter-big__l{ color:var(--ink-600); font-weight:600; font-size:var(--small-size); margin-top:.2rem; }
+
+/* ============================================================
+   SLIDE 8 — 5-step process (interactive stepper)
+   ============================================================ */
+.steps5{ position:relative; padding:1.4rem .5rem .6rem; margin-top:.4rem; }
+.s5-track{ position:absolute; top:calc(1.4rem + 27px); left:9%; right:9%; height:5px; border-radius:99px; background:var(--ac-track); }
+.s5-fill{ display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--pvep-blue),var(--pvep-green)); transition:width .5s var(--ac-ease); }
+.s5{ position:relative; display:flex; justify-content:space-between; gap:.4rem; }
+.s5__step{ display:flex; flex-direction:column; align-items:center; gap:.5rem; flex:1; z-index:1; cursor:pointer; background:none; border:0; font-family:inherit; }
+.s5__step b{ width:clamp(42px,5.4vw,56px); height:clamp(42px,5.4vw,56px); border-radius:50%; display:grid; place-content:center; background:#fff; color:var(--pvep-blue); font-family:var(--font-display); font-weight:800; font-size:clamp(1rem,2vw,1.35rem); border:4px solid var(--pvep-blue); box-shadow:0 8px 22px rgba(0,131,199,.18); transition:all .35s var(--ac-ease-bounce); }
+.s5__step span{ color:var(--ink-700); font-size:clamp(.68rem,1.3vw,.92rem); font-weight:600; max-width:16ch; text-align:center; line-height:1.25; transition:color .3s; }
+.s5__step:hover b{ transform:scale(1.08); }
+.s5__step.on b{ background:var(--pvep-green); border-color:var(--pvep-green); color:#fff; transform:scale(1.14); box-shadow:0 12px 30px rgba(0,176,80,.35); }
+.s5__step.on span{ color:var(--success); font-weight:700; }
+.step-info{ max-width:880px; margin:clamp(.7rem,2.4vh,1.4rem) auto 0; background:#fff; border:1px solid rgba(0,131,199,.3); border-radius:16px; padding:clamp(.9rem,2vw,1.3rem); box-shadow:0 16px 44px rgba(0,131,199,.12); }
+.step-info.flash-in{ animation:stepIn .45s var(--ac-ease) both; }
+@keyframes stepIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+.step-info__t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-blue); font-size:clamp(.95rem,1.9vw,1.3rem); margin-bottom:.4rem; display:flex; align-items:center; gap:.5rem; }
+.step-info__no{ width:26px; height:26px; border-radius:8px; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; display:grid; place-content:center; font-size:.8rem; flex:none; }
+
+/* ============================================================
+   SLIDE 9 — Market map (interactive)
+   ============================================================ */
+.mkt{ display:grid; grid-template-columns:auto 1fr; gap:clamp(.9rem,2.2vw,1.8rem); align-items:stretch; margin-top:.3rem; }
+.mk-chart{ position:relative; width:clamp(300px,42vh,470px); aspect-ratio:1/1; background:#fff; border:1px solid var(--ac-line); border-radius:16px; box-shadow:0 14px 40px rgba(10,42,74,.08); overflow:hidden; flex:none; }
+.mk-zone{ position:absolute; border-radius:14px; }
+.mk-zone--safe{ left:4%; bottom:4%; width:44%; height:44%; background:linear-gradient(135deg,rgba(0,131,199,.10),rgba(0,131,199,.03)); border:1px dashed rgba(0,131,199,.35); }
+.mk-zone--risk{ right:4%; top:4%; width:52%; height:52%; background:linear-gradient(135deg,rgba(217,119,6,.10),rgba(217,119,6,.03)); border:1px dashed rgba(217,119,6,.4); }
+.mk-zone span{ position:absolute; left:.6rem; bottom:.4rem; font-family:var(--font-display); font-weight:800; font-size:clamp(.55rem,1vw,.72rem); color:var(--pvep-blue); opacity:.85; line-height:1.2; }
+.mk-zone--risk span{ color:var(--caution); left:auto; right:.6rem; bottom:auto; top:.4rem; text-align:right; }
+.mk-axis{ position:absolute; font-size:.55rem; font-weight:700; color:var(--ink-500); text-transform:uppercase; letter-spacing:.06em; pointer-events:none; }
+.mk-axis.x{ bottom:4px; left:50%; transform:translateX(-50%); }
+.mk-axis.y{ top:50%; left:4px; transform:translate(0,-50%); writing-mode:vertical-rl; }
+.mk-dot{ position:absolute; transform:translate(-50%,50%); border-radius:50%; border:3px solid #fff; cursor:pointer; z-index:3; transition:transform .3s var(--ac-ease-bounce), box-shadow .3s; box-shadow:0 6px 16px rgba(10,42,74,.25); background:var(--pvep-blue); }
+.mk-dot--lg{ width:30px; height:30px; } .mk-dot--md{ width:22px; height:22px; }
+.mk-dot--risk{ background:var(--caution); }
+.mk-dot--ru{ background:var(--ink-500); }
+.mk-dot:hover{ transform:translate(-50%,50%) scale(1.2); }
+.mk-dot.on{ transform:translate(-50%,50%) scale(1.3); box-shadow:0 0 0 6px rgba(0,131,199,.18), 0 10px 24px rgba(10,42,74,.3); }
+.mk-dot i{ position:absolute; left:50%; bottom:calc(100% + 4px); transform:translateX(-50%); font-style:normal; font-family:var(--font-display); font-weight:700; font-size:.62rem; color:var(--ink-700); white-space:nowrap; background:rgba(255,255,255,.85); padding:.05rem .4rem; border-radius:99px; pointer-events:none; }
+.mk-panel{ background:#fff; border:1px solid var(--ac-line); border-radius:18px; padding:clamp(.9rem,2vw,1.4rem); box-shadow:0 14px 40px rgba(10,42,74,.07); display:flex; flex-direction:column; gap:.55rem; }
+.mk-panel.flash-in{ animation:stepIn .4s var(--ac-ease) both; }
+.mk-panel__h{ display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; }
+.mk-panel__name{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1.15rem,2.6vw,1.8rem); }
+.mk-badge{ font-family:var(--font-display); font-weight:800; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.3rem .8rem; border-radius:99px; background:var(--pvep-blue); }
+.mk-badge--risk{ background:var(--caution); } .mk-badge--ru{ background:var(--ink-500); }
+.mk-chiprow{ display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.4rem; }
+.mk-chip{ font-family:var(--font-display); font-weight:700; font-size:clamp(.66rem,1.2vw,.85rem); color:var(--ink-600); background:#fff; border:1px solid var(--ac-line); border-radius:99px; padding:.32rem .8rem; cursor:pointer; transition:all .25s; }
+.mk-chip:hover{ border-color:var(--pvep-blue); color:var(--pvep-blue); }
+.mk-chip.on{ color:#fff; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); border-color:transparent; box-shadow:0 6px 16px rgba(0,131,199,.28); }
+
+/* ============================================================
+   SLIDE 10 — Policy changes
+   ============================================================ */
+.pol{ display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(.9rem,2.2vw,1.8rem); align-items:stretch; }
+.pol__card{ background:#fff; border:1px solid var(--ac-line); border-radius:18px; padding:clamp(1rem,2.2vw,1.6rem); box-shadow:0 14px 40px rgba(10,42,74,.07); }
+.pol__tag{ font-family:var(--font-display); font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:.64rem; color:var(--pvep-blue); margin-bottom:.6rem; }
+.pol__card--g .pol__tag{ color:var(--pvep-green); }
+.pol__card--g{ border-color:rgba(0,176,80,.4); }
+.pitem{ display:flex; gap:.7rem; align-items:flex-start; padding:.45rem 0; border-bottom:1px dashed var(--ac-line); }
+.pitem:last-child{ border-bottom:0; }
+.pitem__n{ font-family:var(--font-display); font-weight:800; color:#fff; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); width:26px; height:26px; border-radius:8px; display:grid; place-content:center; font-size:.8rem; flex:none; box-shadow:0 6px 14px rgba(0,131,199,.25); }
+.pitem__t{ font-size:var(--small-size); color:var(--ink-700); line-height:1.35; }
+.pitem__t b{ color:var(--pvep-navy); font-weight:700; }
+
+/* ============================================================
+   SLIDE 11 — M&A accordion
+   ============================================================ */
+.acc{ display:flex; flex-direction:column; gap:.45rem; max-width:1060px; margin:.3rem auto 0; }
+.acc__row{ background:#fff; border:1px solid var(--ac-line); border-left:5px solid var(--pvep-blue); border-radius:14px; box-shadow:0 10px 28px rgba(10,42,74,.06); overflow:hidden; cursor:pointer; transition:border-color .3s, box-shadow .3s; }
+.acc__row:hover{ border-color:var(--pvep-blue); box-shadow:0 16px 40px rgba(0,131,199,.14); }
+.acc__head{ display:flex; align-items:center; gap:.85rem; padding:.6rem 1rem; }
+.acc__no{ width:32px; height:32px; border-radius:50%; background:var(--pvep-navy); color:#fff; font-family:var(--font-display); font-weight:800; display:grid; place-content:center; flex:none; transition:background .3s, transform .3s var(--ac-ease-bounce); }
+.acc__t{ flex:1; font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.88rem,1.7vw,1.15rem); }
+.acc__chev{ color:var(--ink-500); transition:transform .35s var(--ac-ease); flex:none; }
+.acc__body{ max-height:0; overflow:hidden; transition:max-height .45s var(--ac-ease); }
+.acc__inner{ padding:0 1rem .8rem calc(32px + 1.85rem); }
+.acc__row.open{ border-left-color:var(--pvep-green); }
+.acc__row.open .acc__no{ background:var(--pvep-green); transform:scale(1.08); }
+.acc__row.open .acc__chev{ transform:rotate(180deg); color:var(--pvep-green); }
+.acc__row.open .acc__body{ max-height:220px; }
+
+/* ============================================================
+   SLIDE 12 — Gantt 2026–2030 (interactive)
+   ============================================================ */
+.iz-seg{ display:inline-flex; background:var(--bg-100); border:1px solid var(--ac-line); border-radius:99px; padding:.22rem; gap:.2rem; flex-wrap:wrap; justify-content:center; }
+.iz-seg button{ font-family:var(--font-display); font-weight:700; font-size:clamp(.62rem,1.15vw,.84rem); color:var(--ink-600); background:transparent; border:0; border-radius:99px; padding:.36rem .85rem; cursor:pointer; transition:background .25s,color .25s,box-shadow .25s; }
+.iz-seg button.on{ background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; box-shadow:0 6px 16px rgba(0,131,199,.28); }
+.gantt{ --lblw:clamp(13rem,24vw,21rem); max-width:1500px; margin:.4rem auto 0; background:#fff; border:1px solid var(--ac-line); border-radius:16px; box-shadow:0 16px 44px rgba(10,42,74,.08); padding:.7rem .9rem .55rem; position:relative; }
+.g-head{ display:grid; grid-template-columns:var(--lblw) 1fr; margin-bottom:.3rem; }
+.g-years{ display:grid; grid-template-columns:repeat(5,1fr); }
+.g-years span{ font-family:var(--font-display); font-weight:800; font-size:clamp(.62rem,1.1vw,.8rem); color:var(--pvep-navy); text-align:center; border-left:1px solid var(--ac-line); }
+.g-body{ position:relative; display:flex; flex-direction:column; gap:.16rem; }
+.g-mslines{ position:absolute; top:0; bottom:0; left:var(--lblw); right:0; pointer-events:none; z-index:2; }
+.g-msline{ position:absolute; top:0; bottom:0; width:2px; background:repeating-linear-gradient(180deg,var(--pvep-green) 0 6px,transparent 6px 11px); left:var(--x); opacity:.75; }
+.g-msline::after{ content:attr(data-l); position:absolute; top:-1.05rem; left:50%; transform:translateX(-50%); font-family:var(--font-display); font-weight:800; font-size:.56rem; color:var(--pvep-green); white-space:nowrap; background:rgba(255,255,255,.9); padding:0 .3rem; border-radius:99px; }
+.g-row{ display:grid; grid-template-columns:var(--lblw) 1fr; align-items:center; border-radius:8px; transition:background .25s; }
+.g-row:hover{ background:rgba(0,131,199,.06); }
+.g-row.is-hide{ display:none; }
+.g-lbl{ padding:.14rem .6rem .14rem .3rem; line-height:1.12; }
+.g-lbl b{ display:block; font-family:var(--font-display); font-weight:700; color:var(--ink-700); font-size:clamp(.58rem,1.05vw,.78rem); }
+.g-lbl small{ color:var(--ink-500); font-size:clamp(.5rem,.9vw,.66rem); }
+.g-track{ position:relative; height:clamp(14px,2.1vh,20px); background:repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), var(--ac-line) calc(20% - 1px) 20%); border-radius:6px; }
+.g-bar{ position:absolute; top:15%; height:70%; left:var(--l); border-radius:99px; background:linear-gradient(90deg,var(--pvep-blue),#005f91); box-shadow:0 3px 10px rgba(0,131,199,.3); }
+.g-bar--ext{ background:repeating-linear-gradient(90deg, rgba(0,131,199,.32) 0 8px, rgba(0,131,199,.12) 8px 16px); box-shadow:none; }
+.g-row[data-g="b"] .g-bar{ background:linear-gradient(90deg,var(--pvep-green),#0a7d3a); box-shadow:0 3px 10px rgba(0,176,80,.3); }
+.g-row[data-g="b"] .g-bar--ext{ background:repeating-linear-gradient(90deg, rgba(0,176,80,.32) 0 8px, rgba(0,176,80,.12) 8px 16px); box-shadow:none; }
+.g-row[data-g="c"] .g-bar{ background:linear-gradient(90deg,var(--caution),#b45309); box-shadow:0 3px 10px rgba(217,119,6,.3); }
+.g-row[data-g="d"] .g-bar{ background:linear-gradient(90deg,var(--pvep-navy),#13314f); box-shadow:0 3px 10px rgba(10,42,74,.3); }
+.g-row[data-g="d"] .g-bar--ext{ background:repeating-linear-gradient(90deg, rgba(10,42,74,.30) 0 8px, rgba(10,42,74,.10) 8px 16px); box-shadow:none; }
+.g-legend{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top:.45rem; font-size:clamp(.56rem,1vw,.72rem); color:var(--ink-600); font-weight:600; }
+.g-legend i{ display:inline-block; width:18px; height:8px; border-radius:99px; margin-right:.3rem; vertical-align:middle; }
+.g-legend .la{ background:linear-gradient(90deg,var(--pvep-blue),#005f91); }
+.g-legend .lb{ background:linear-gradient(90deg,var(--pvep-green),#0a7d3a); }
+.g-legend .lc{ background:linear-gradient(90deg,var(--caution),#b45309); }
+.g-legend .ld{ background:linear-gradient(90deg,var(--pvep-navy),#13314f); }
+.g-legend .le{ background:repeating-linear-gradient(90deg, rgba(0,131,199,.32) 0 6px, rgba(0,131,199,.12) 6px 12px); }
+
+/* ============================================================
+   SLIDE 13 — Milestones & KPI
+   ============================================================ */
+.ms-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(.8rem,2vw,1.4rem); }
+.ms-card{ position:relative; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid var(--ac-line); border-radius:20px; padding:clamp(1rem,2.2vw,1.6rem); box-shadow:0 16px 44px rgba(10,42,74,.08); text-align:center; overflow:hidden; }
+.ms-card::before{ content:""; position:absolute; left:0; right:0; top:0; height:5px; background:linear-gradient(90deg,var(--pvep-blue),var(--pvep-green)); }
+.ms-q{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.5rem,3.6vw,2.4rem); color:var(--pvep-blue); line-height:1; }
+.ms-card:nth-child(2) .ms-q{ color:var(--pvep-green); }
+.ms-card:nth-child(3) .ms-q{ color:var(--pvep-navy); }
+.ms-t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.9rem,1.8vw,1.2rem); margin-top:.4rem; line-height:1.2; }
+.ms-d{ color:var(--ink-600); font-size:clamp(.7rem,1.3vw,.9rem); margin-top:.3rem; line-height:1.35; }
+.kpi3{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top:clamp(.8rem,2.6vh,1.5rem); }
+.kpi3 span{ font-family:var(--font-display); font-weight:700; font-size:clamp(.72rem,1.4vw,.95rem); color:var(--pvep-navy); background:#fff; border:1px solid rgba(0,131,199,.35); padding:.5rem 1rem; border-radius:12px; box-shadow:0 8px 22px rgba(10,42,74,.06); }
+.kpi3 b{ color:var(--pvep-blue); }
+
+/* ============================================================
+   SLIDE 14 — Conclusion
+   ============================================================ */
+.end__lead{ font-family:var(--font-body); color:var(--ink-700); font-size:clamp(1.05rem,2.8vh,1.8rem); line-height:1.45; max-width:60ch; margin-inline:auto; }
+.end__lead b{ color:var(--pvep-navy); }
+.end__big{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.7rem,5vw,3.6rem); line-height:1.22; padding:.15em .1rem; letter-spacing:-.01em; margin:clamp(1rem,3.6vh,2.2rem) auto; max-width:24ch; position:relative;
+  background:linear-gradient(120deg,var(--pvep-navy),var(--pvep-blue) 45%,var(--pvep-green) 68%,var(--pvep-blue));
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.ac-on .end__big{ animation:boomIn 1.25s var(--ac-ease-bounce) .2s both, textShine 5s linear 1.5s infinite; }
+.end__thanks{ margin-top:1.4rem; color:var(--ink-500); font-weight:600; font-size:clamp(.85rem,1.5vw,1.05rem); letter-spacing:.04em; }
+.shock{ position:absolute; left:50%; top:50%; width:46px; height:46px; border-radius:50%; border:3px solid var(--pvep-blue); transform:translate(-50%,-50%) scale(0); opacity:0; z-index:0; pointer-events:none; }
+.ac-on .shock{ animation:shockwave 2.8s var(--ac-ease) .3s infinite; }
+.shock--2{ border-color:var(--pvep-green); }
+.ac-on .shock--2{ animation:shockwave 2.8s var(--ac-ease) 1.2s infinite; }
+@keyframes shockwave{ 0%{transform:translate(-50%,-50%) scale(0);opacity:.6} 70%{opacity:.1} 100%{transform:translate(-50%,-50%) scale(24);opacity:0} }
+
+/* ============================================================
+   MOBILE PORTRAIT
+   ============================================================ */
+@media (max-width:768px){
+  :root{
+    --title-size:clamp(1.25rem,5.4vw,1.9rem);
+    --h2-size:clamp(1.1rem,4.6vw,1.6rem);
+    --body-size:clamp(.9rem,3.6vw,1.05rem);
+    --small-size:clamp(.78rem,3.1vw,.95rem);
+    --slide-padding:clamp(1rem,5vw,1.6rem);
+    --content-gap:clamp(.7rem,3vw,1.2rem);
+  }
+  html{ scroll-snap-type:y proximity; }
+  .slide{ height:auto; min-height:100vh; min-height:100svh; overflow:visible; }
+  .slide-content{ justify-content:center; overflow:visible; max-height:none; min-height:100vh; min-height:100svh; padding-top:clamp(3rem,11vh,4.5rem); padding-bottom:clamp(2.4rem,9vh,3.6rem); }
+  .slide-content > .wrap{ margin-block:auto; }
+  .wrap, .wrap--wide{ width:92%; }
+  .s-title{ font-size:var(--title-size); }
+  .hero__word{ font-size:clamp(1.7rem,9vw,2.8rem); }
+  .statgrid, .cards, .cards--3, .en-grid, .duo16, .gov, .pol, .ms-grid, .mkt, .mt-foot, .donut-wrap{ display:flex !important; flex-direction:column; gap:.7rem; }
+  .bigrow{ display:grid !important; grid-template-columns:repeat(2,1fr) !important; gap:.6rem; }
+  .donut{ width:clamp(160px,60vw,240px) !important; }
+  .rtbl th, .rtbl td{ padding:.4rem .5rem !important; }
+  .mk-chart{ width:100%; max-width:420px; margin-inline:auto; }
+  .s5{ flex-direction:column; align-items:flex-start; gap:.7rem; }
+  .s5__step{ flex-direction:row; align-items:center; gap:.8rem; width:100%; }
+  .s5__step span{ max-width:none; text-align:left; }
+  .s5-track{ display:none; }
+  .steps5{ padding:.6rem 0; }
+  .gantt{ --lblw:9.5rem; overflow-x:auto; }
+  .g-msline::after{ display:none; }
+  .mhint{ display:flex; }
+}
+.mhint{
+  display:none; position:fixed; left:50%; bottom:1rem; transform:translateX(-50%);
+  z-index:62; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:700;
+  font-size:.72rem; color:var(--pvep-blue); background:rgba(255,255,255,.82); border:1px solid rgba(0,131,199,.28);
+  padding:.4rem .9rem; border-radius:999px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px rgba(10,42,74,.12); animation:mhintBob 1.8s ease-in-out infinite; transition:opacity .4s ease;
+}
+.mhint.is-hidden{ opacity:0; pointer-events:none; }
+@keyframes mhintBob{ 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(-5px); } }
+@media (prefers-reduced-motion:reduce){ .mhint{ animation:none!important; } }
+
+/* ============================================================
+   PRINT / EXPORT PDF — mỗi slide = 1 trang A4 ngang
+   ============================================================ */
+@media print{
+  @page{ size:A4 landscape; margin:8mm; }
+  html{ scroll-snap-type:none !important; scroll-behavior:auto; }
+  html, body{ height:auto !important; overflow:visible !important; }
+  body{ background:#fff !important; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .oilbg, .progress, .rail, .counter, .hint, .mhint, .video-bg-wrap{ display:none !important; }
+  .slide{ width:100% !important; height:auto !important; min-height:auto !important; overflow:visible !important; box-shadow:none !important;
+    page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; padding:6mm 0; }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide-content{ height:auto !important; max-height:none !important; overflow:visible !important; justify-content:flex-start !important; padding-left:var(--slide-padding) !important; }
+  .wrap, .wrap--wide{ width:96% !important; }
+  .ac-reveal, .ac-pop{ opacity:1 !important; transform:none !important; }
+  .ac-bar{ height:var(--h) !important; }
+  .ac-fill-x{ width:var(--w) !important; }
+  .ac-draw{ stroke-dashoffset:0 !important; }
+  *, *::before, *::after{ animation:none !important; transition:none !important; }
+  .acc__body{ max-height:none !important; }
+  .g-row.is-hide{ display:grid !important; }
+  .card4, .tri__card, .stat, .imp, .en, .gtier, .gov__p, .pol__card, .acc__row, .ms-card, .mk-panel, .panel, .step-info{ break-inside:avoid; page-break-inside:avoid; }
+  .deckfoot{ position:fixed; }
+  .mt-foot, .bigrow, .heat, .wfall, .funnel{ break-inside:avoid; }
+}
+
+/* ============================================================
+   BÁO CÁO HĐTV 6T/2026 — COMPONENT ADD-ONS
+   ============================================================ */
+/* ----- status pill 🟢🟡🔴 ----- */
+.pill{ display:inline-flex; align-items:center; gap:.42rem; font-family:var(--font-display); font-weight:800; font-size:clamp(.62rem,1.1vw,.82rem); letter-spacing:.01em; padding:.3rem .8rem; border-radius:999px; white-space:nowrap; }
+.pill::before{ content:""; width:9px; height:9px; border-radius:50%; }
+.pill--g{ color:#15803D; background:rgba(21,128,61,.12); } .pill--g::before{ background:#16A34A; }
+.pill--y{ color:#B45309; background:rgba(217,119,6,.14); } .pill--y::before{ background:#EA580C; }
+.pill--r{ color:#B91C1C; background:rgba(220,38,38,.12); } .pill--r::before{ background:#DC2626; }
+
+/* ----- master template 3 tầng (Slide 7–16) ----- */
+.mt{ display:flex; flex-direction:column; gap:clamp(.55rem,1.7vh,1.1rem); height:100%; }
+.mt-banner{ display:flex; align-items:center; gap:.85rem; flex-wrap:wrap; background:#fff; border:1px solid var(--ac-line); border-left:5px solid var(--pvep-blue); border-radius:14px; padding:.65rem 1.05rem; box-shadow:0 10px 28px rgba(10,42,74,.06); }
+.mt-banner__t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1rem,2vw,1.45rem); line-height:1.1; }
+.mt-banner__c{ flex:1 1 14ch; color:var(--ink-600); font-size:var(--small-size); line-height:1.3; min-width:12ch; }
+.mt-mid{ flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+.mt-foot{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(.7rem,1.6vw,1.1rem); }
+.mt-foot__col{ background:#fff; border:1px solid var(--ac-line); border-radius:14px; padding:.65rem 1rem; box-shadow:0 10px 26px rgba(10,42,74,.05); }
+.mt-foot__col--warn{ border-top:4px solid var(--warning); }
+.mt-foot__col--act{ border-top:4px solid var(--pvep-green); }
+.mt-foot__h{ font-family:var(--font-display); font-weight:800; font-size:clamp(.7rem,1.25vw,.9rem); letter-spacing:.04em; text-transform:uppercase; margin-bottom:.35rem; color:var(--warning); display:flex; align-items:center; gap:.4rem; }
+.mt-foot__col--act .mt-foot__h{ color:var(--success); }
+.mt-foot .rlist li{ font-size:clamp(.74rem,1.3vw,.95rem); }
+
+/* ----- big-number dashboard (Slide 4 / KPI scorecard) ----- */
+.bigrow{ display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(.55rem,1.3vw,1rem); }
+.bignum{ background:#fff; border:1px solid var(--ac-line); border-top:4px solid var(--pvep-blue); border-radius:16px; padding:clamp(.85rem,1.7vw,1.3rem); text-align:center; box-shadow:0 12px 32px rgba(10,42,74,.06); }
+.bignum:nth-child(2){ border-top-color:var(--pvep-green); } .bignum:nth-child(4){ border-top-color:var(--pvep-navy); }
+.bignum__n{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.7rem,4vw,2.9rem); color:var(--pvep-blue); line-height:1; }
+.bignum:nth-child(2) .bignum__n{ color:var(--pvep-green); } .bignum:nth-child(4) .bignum__n{ color:var(--pvep-navy); }
+.bignum__l{ color:var(--ink-700); font-weight:700; font-size:var(--small-size); margin-top:.4rem; line-height:1.22; }
+
+/* ----- donut trạng thái (Slide 6) ----- */
+.donut-wrap{ display:grid; grid-template-columns:auto 1fr; gap:clamp(1rem,4vw,2.6rem); align-items:center; max-width:980px; margin-inline:auto; }
+.donut{ width:clamp(190px,32vh,300px); aspect-ratio:1; border-radius:50%; flex:none; margin-inline:auto; position:relative; box-shadow:0 16px 44px rgba(10,42,74,.10);
+  background:conic-gradient(#16A34A 0 38%, var(--pvep-blue) 38% 60%, var(--caution) 60% 78%, var(--danger) 78% 90%, var(--pvep-navy) 90% 96%, var(--ink-500) 96% 100%); }
+.donut::after{ content:""; position:absolute; inset:26%; background:#fff; border-radius:50%; box-shadow:inset 0 2px 10px rgba(10,42,74,.08); }
+.donut__c{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:1; }
+.donut__c b{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.6rem,4vw,2.6rem); color:var(--pvep-navy); line-height:1; }
+.donut__c span{ font-size:var(--small-size); color:var(--ink-500); }
+.legend{ display:flex; flex-direction:column; gap:.5rem; }
+.legend__i{ display:flex; align-items:center; gap:.65rem; font-size:var(--small-size); color:var(--ink-700); font-weight:600; }
+.legend__i i{ width:15px; height:15px; border-radius:4px; flex:none; }
+.legend__i b{ margin-left:auto; font-family:var(--font-display); color:var(--pvep-navy); }
+
+/* ----- chuỗi đánh giá / quy trình dọc (Slide 3) ----- */
+.chain{ display:flex; flex-direction:column; gap:.4rem; }
+.chain__i{ background:#fff; border:1px solid var(--ac-line); border-left:4px solid var(--pvep-blue); border-radius:10px; padding:.5rem .85rem; font-weight:700; color:var(--pvep-navy); font-size:var(--small-size); display:flex; align-items:center; gap:.65rem; box-shadow:0 8px 22px rgba(10,42,74,.05); }
+.chain__i .n{ width:23px; height:23px; border-radius:50%; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; display:grid; place-content:center; font-size:.72rem; font-family:var(--font-display); flex:none; }
+
+/* ----- bảng dữ liệu (Slide 8/16) ----- */
+.rtbl{ width:100%; border-collapse:collapse; font-size:var(--small-size); background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgba(10,42,74,.06); }
+.rtbl th,.rtbl td{ padding:.5rem .75rem; text-align:left; border-bottom:1px solid var(--ac-line); line-height:1.25; }
+.rtbl th{ font-family:var(--font-display); background:var(--pvep-navy); color:#fff; font-weight:700; font-size:clamp(.6rem,1.05vw,.78rem); }
+.rtbl tr:last-child td{ border-bottom:0; }
+.rtbl td b{ color:var(--pvep-navy); }
+.rtbl tbody tr:hover{ background:rgba(0,131,199,.05); }
+
+/* ----- phễu pipeline (Slide 10) ----- */
+.funnel{ display:flex; flex-direction:column; gap:.5rem; max-width:760px; margin-inline:auto; }
+.funnel__row{ margin-inline:auto; color:#fff; border-radius:10px; padding:.7rem 1rem; text-align:center; font-family:var(--font-display); font-weight:700; font-size:var(--small-size); box-shadow:0 10px 26px rgba(0,131,199,.18); background:linear-gradient(135deg,var(--pvep-blue),#005f91); display:flex; flex-direction:column; gap:.1rem; }
+.funnel__row b{ font-size:clamp(1.05rem,2.2vw,1.5rem); }
+.funnel__row:nth-child(1){ width:100%; }
+.funnel__row:nth-child(2){ width:82%; }
+.funnel__row:nth-child(3){ width:64%; }
+.funnel__row:nth-child(4){ width:46%; background:linear-gradient(135deg,var(--pvep-green),#0a7d3a); }
+
+/* ----- waterfall dòng tiền (Slide 11) ----- */
+.wfall{ display:flex; align-items:flex-end; gap:clamp(.4rem,1.2vw,.9rem); height:clamp(150px,26vh,260px); max-width:840px; margin:0 auto; }
+.wfall__col{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:.4rem; }
+.wfall__bar{ width:100%; border-radius:8px 8px 0 0; background:linear-gradient(180deg,var(--pvep-blue),#005f91); min-height:6px; }
+.wfall__bar--g{ background:linear-gradient(180deg,var(--pvep-green),#0a7d3a); }
+.wfall__bar--r{ background:linear-gradient(180deg,var(--danger),#991b1b); }
+.wfall__bar--n{ background:linear-gradient(180deg,var(--pvep-navy),#13314f); }
+.wfall__l{ font-size:clamp(.56rem,1vw,.74rem); color:var(--ink-600); font-weight:700; text-align:center; line-height:1.15; }
+
+/* ----- risk heatmap 5×5 (Slide 13/19) ----- */
+.heatbox{ display:flex; gap:.6rem; align-items:stretch; max-width:min(600px,52vh); margin-inline:auto; width:100%; }
+.heat__ylab{ writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-weight:800; font-size:clamp(.58rem,1.05vw,.78rem); color:var(--ink-600); font-family:var(--font-display); }
+.heat__col{ flex:1; display:flex; flex-direction:column; }
+.heat{ display:grid; grid-template-columns:repeat(5,1fr); grid-auto-rows:1fr; gap:6px; flex:1; aspect-ratio:1.5/1; }
+.heat__cell{ border-radius:8px; position:relative; }
+.heat__cell.hc1{ background:#16A34A; } .heat__cell.hc2{ background:#84CC16; } .heat__cell.hc3{ background:#F59E0B; } .heat__cell.hc4{ background:#F97316; } .heat__cell.hc5{ background:#DC2626; }
+.heat__pt{ position:absolute; inset:0; display:grid; place-content:center; }
+.heat__pt b{ background:#fff; color:var(--pvep-navy); border:2px solid var(--pvep-navy); border-radius:999px; min-width:1.8em; height:1.8em; padding:0 .3em; display:grid; place-content:center; font-family:var(--font-display); font-weight:800; font-size:clamp(.6rem,1.15vw,.82rem); box-shadow:0 4px 12px rgba(10,42,74,.3); }
+.heat__xlab{ text-align:center; font-weight:800; font-size:clamp(.58rem,1.05vw,.78rem); color:var(--ink-600); margin-top:.35rem; font-family:var(--font-display); }
+
+/* ----- footer mọi slide: tên báo cáo · MẬT · số trang ----- */
+.deckfoot{ position:fixed; left:0; right:0; bottom:0; z-index:54; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.32rem clamp(1rem,3vw,1.6rem); font-size:clamp(.55rem,1vw,.72rem); color:var(--ink-500); pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.85) 45%); }
+@media (min-width:1000px){ .deckfoot{ left:var(--rail); } }
+.deckfoot__l{ font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.deckfoot__c{ font-family:var(--font-display); font-weight:800; letter-spacing:.2em; color:var(--danger); flex:none; }
+.deckfoot__r{ font-family:var(--font-display); font-weight:700; color:var(--pvep-navy); flex:none; }
+body.hero-active .deckfoot{ color:rgba(10,42,74,.85); background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.55)); }
+@media (max-width:768px){ .deckfoot__l{ max-width:48vw; } }
+
+/* ============================================================
+   LAYOUT DENSITY — FULL-CANVAS DASHBOARD (desktop ≥1000px)
+   Body chiếm ~80–88% chiều cao, edge-to-edge, header gọn,
+   grid chia đều — không để khoảng trống lớn ở giữa/ quanh slide.
+   ============================================================ */
+@media (min-width:1000px){
+  /* margin gọn 36–46px, body dùng gần hết canvas */
+  .slide-content{
+    padding-top:clamp(.9rem,2.4vh,1.6rem);
+    padding-bottom:clamp(.8rem,2vh,1.4rem);
+    padding-right:clamp(1.5rem,2.4vw,2.8rem);
+    padding-left:calc(clamp(1.5rem,2.4vw,2.8rem) + var(--rail));
+  }
+  .wrap, .wrap--wide{ width:100%; max-width:none; }
+
+  /* mọi slide nội dung: wrap = board flex dọc, full chiều cao.
+     Căn giữa → slide chốt/khối đơn vẫn cân; nhưng module body có flex:1
+     sẽ giãn lấp toàn canvas (flex-grow thắng justify-content). */
+  .slide:not([data-hero]) .slide-content > .wrap{
+    flex:1 1 auto; min-height:0;
+    display:flex; flex-direction:column; justify-content:center;
+    gap:clamp(.4rem,1.3vh,.95rem);
+  }
+  /* header tối đa ~12–15% chiều cao */
+  .slide-content > .wrap > .head-center{ flex:0 0 auto; margin-bottom:0; }
+
+  /* khối nội dung chính giãn lấp toàn bộ phần còn lại */
+  .slide:not([data-hero]) .slide-content > .wrap > .cards,
+  .slide:not([data-hero]) .slide-content > .wrap > .duo16,
+  .slide:not([data-hero]) .slide-content > .wrap > .bigrow,
+  .slide:not([data-hero]) .slide-content > .wrap > .donut-wrap,
+  .slide:not([data-hero]) .slide-content > .wrap > .en-grid,
+  .slide:not([data-hero]) .slide-content > .wrap > .mkt,
+  .slide:not([data-hero]) .slide-content > .wrap > .pol,
+  .slide:not([data-hero]) .slide-content > .wrap > .statgrid,
+  .slide:not([data-hero]) .slide-content > .wrap > .mt{
+    flex:1 1 auto; min-height:0; align-content:stretch;
+  }
+
+  /* grid nhiều hàng chia chiều cao đều nhau → card cao, dàn rộng full row */
+  .cards, .cards--3, .en-grid, .statgrid, .bigrow, .ms-grid{ grid-auto-rows:1fr; }
+
+  /* card KPI căn giữa nội dung theo chiều dọc khi kéo cao */
+  .bignum, .stat, .card4, .en{ display:flex; flex-direction:column; justify-content:center; }
+  .en-grid{ gap:clamp(.45rem,1vw,.8rem); }
+  .en{ padding:clamp(.6rem,1.2vw,.95rem); }
+
+  /* số liệu lớn hơn cho màn full-screen HĐTV */
+  .bignum__n{ font-size:clamp(2rem,4.6vw,3.4rem); }
+  .stat__n{ font-size:clamp(1.9rem,4.6vw,3.2rem); }
+  .donut{ width:clamp(220px,38vh,360px); }
+
+  /* master template: 3 tầng dàn đều toàn chiều cao */
+  .mt{ height:100%; gap:clamp(.5rem,1.7vh,1.05rem); }
+  .mt-mid{ justify-content:center; }
+  .mt-mid .rtbl{ font-size:clamp(.72rem,1.25vw,1rem); }
+  .mt-mid .rtbl th, .mt-mid .rtbl td{ padding:.62rem .85rem; }
+}
+
+/* ============================================================
+   EXECUTIVE DASHBOARD REDESIGN — boardroom infographic 2026
+   Title hierarchy mạnh · typography lớn · nền mờ · card giàu thông tin
+   ============================================================ */
+@media (min-width:1000px){
+  /* ---- nền chỉ là texture: ép ảnh mờ, thêm lưới dashboard mảnh ---- */
+  .oilbg::after{
+    background:linear-gradient(120deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.92) 46%, rgba(235,241,247,.92) 72%, rgba(0,131,199,.16) 100%);
+  }
+  .slide::after{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:linear-gradient(rgba(10,42,74,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,42,74,.04) 1px, transparent 1px);
+    background-size:64px 64px;
+  }
+  .slide[data-hero]::after{ display:none; }
+  .slide-content{ z-index:2; }
+
+  /* ---- HEADER ZONE: tiêu đề lớn, top-left, vạch nhấn ---- */
+  .head-center{ text-align:left; align-items:flex-start; gap:.35rem;
+    padding-left:1rem; border-left:7px solid var(--pvep-blue); margin-bottom:0; max-width:none; }
+  .eyebrow{ font-size:clamp(.82rem,1.05vw,1.02rem); letter-spacing:.16em; }
+  .s-title, .s-title--sm{ text-align:left; font-size:clamp(2.2rem,4.4vw,3.6rem); line-height:1.05; letter-spacing:-.015em; }
+  .s-title::before{ display:none; }
+  .neo{ color:var(--pvep-blue); } .s-title .neo, .s-title span[style*="caution"]{ } /* keyword accent giữ nguyên */
+  .lead-note{ text-align:left; margin-left:0; max-width:none; font-size:clamp(1rem,1.35vw,1.35rem); }
+  .note, .note--info{ max-width:none; font-size:clamp(.9rem,1.2vw,1.15rem); }
+
+  /* ---- KPI số rất lớn ---- */
+  .bignum__n{ font-size:clamp(3rem,5.6vw,5rem); line-height:.95; }
+  .stat__n{ font-size:clamp(3rem,5.4vw,4.6rem); }
+  .bignum__l, .stat__l{ font-size:clamp(1.05rem,1.45vw,1.45rem); line-height:1.2; }
+  .ms-q{ font-size:clamp(1.6rem,3vw,2.6rem); }
+  .ms-t{ font-size:clamp(1.05rem,1.7vw,1.4rem); }
+  .ms-d{ font-size:clamp(.9rem,1.25vw,1.15rem); }
+
+  /* ---- card text lớn & đậm hơn ---- */
+  .card4 h4{ font-size:clamp(1.05rem,1.65vw,1.4rem); }
+  .card4 p{ font-size:clamp(.95rem,1.3vw,1.22rem); line-height:1.4; }
+  .tri__k{ font-size:clamp(1.1rem,1.85vw,1.5rem); }
+  .panel__t{ font-size:clamp(1.1rem,1.8vw,1.45rem); }
+  .rlist li{ font-size:clamp(.96rem,1.3vw,1.28rem); line-height:1.4; }
+  .rlist li::before{ width:9px; height:9px; top:.55em; }
+
+  /* ---- master template: banner = header lớn, 3 tầng đậm ---- */
+  .mt-banner{ border-left-width:8px; padding:.8rem 1.2rem; }
+  .mt-banner__t{ font-size:clamp(1.7rem,3vw,2.75rem); }
+  .mt-banner__c{ font-size:clamp(.98rem,1.3vw,1.3rem); line-height:1.35; }
+  .pill{ font-size:clamp(.82rem,1.15vw,1.05rem); padding:.42rem 1.05rem; }
+  .mt-foot__h{ font-size:clamp(.88rem,1.2vw,1.08rem); }
+  .mt-foot .rlist li{ font-size:clamp(.95rem,1.3vw,1.22rem); }
+  .mt-foot__col{ padding:.8rem 1.15rem; }
+
+  /* ---- bảng đọc xa ---- */
+  .rtbl th{ font-size:clamp(.8rem,1.15vw,1.05rem); }
+  .rtbl td{ font-size:clamp(.88rem,1.2vw,1.12rem); }
+
+  /* ====================================================
+     MICRO-VIZ COMPONENTS (làm card giàu thông tin)
+     ==================================================== */
+  /* KPI module nhiều tầng */
+  .bignum{ align-items:flex-start; text-align:left; gap:.45rem; padding:clamp(1rem,1.7vw,1.55rem); justify-content:space-between; border-top-width:5px; }
+  .bn-top{ display:flex; align-items:center; justify-content:space-between; width:100%; }
+  .bn-ic{ width:clamp(34px,3vw,46px); height:clamp(34px,3vw,46px); border-radius:12px; display:grid; place-content:center;
+    background:linear-gradient(135deg,rgba(0,131,199,.14),rgba(0,176,80,.14)); color:var(--pvep-blue); flex:none; }
+  .bn-ic svg{ width:60%; height:60%; }
+  .bignum:nth-child(2) .bn-ic{ color:var(--pvep-green); } .bignum:nth-child(4) .bn-ic{ color:var(--pvep-navy); }
+  /* trend badge */
+  .trend{ display:inline-flex; align-items:center; gap:.3rem; font-family:var(--font-display); font-weight:800;
+    font-size:clamp(.82rem,1.15vw,1.05rem); padding:.18rem .6rem; border-radius:99px; }
+  .trend--up{ color:var(--success); background:rgba(21,128,61,.12); }
+  .trend--down{ color:var(--danger); background:rgba(220,38,38,.12); }
+  .trend--flat{ color:var(--ink-600); background:var(--bg-100); }
+  /* benchmark bar (vạch KH = 100%) */
+  .bmk{ position:relative; width:100%; height:clamp(10px,1.3vh,14px); border-radius:99px; background:var(--ac-track); margin-top:.1rem; }
+  .bmk i{ position:absolute; left:0; top:0; bottom:0; border-radius:99px; background:linear-gradient(90deg,var(--pvep-blue),var(--pvep-green)); }
+  .bmk u{ position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--pvep-navy); border-radius:2px; }
+  .bmk u::after{ content:"KH"; position:absolute; top:-1.05rem; left:50%; transform:translateX(-50%);
+    font-family:var(--font-display); font-weight:800; font-size:.62rem; color:var(--pvep-navy); }
+  .kpi-sub{ font-size:clamp(.82rem,1.1vw,1.05rem); color:var(--ink-500); line-height:1.25; font-weight:600; }
+  .kpi-sub b{ color:var(--ink-700); }
+  /* mini bars (sparkline cột) */
+  .mbars{ display:flex; align-items:flex-end; gap:3px; width:100%; height:clamp(26px,3.4vh,40px); }
+  .mbars i{ flex:1; background:linear-gradient(180deg,rgba(0,131,199,.85),#005f91); border-radius:3px 3px 0 0; min-height:5px; }
+  .mbars i.on{ background:linear-gradient(180deg,var(--pvep-green),#0a7d3a); }
+}
+
+/* ============================================================
+   DENSITY OVERHAUL v2 — boardroom dashboard 2026
+   Đặt SAU khối redesign trên → thắng về thứ tự nguồn.
+   Ba mục tiêu: (1) tiêu đề thống trị · (2) chữ trong card to hơn
+   (body 22–28px) · (3) nội dung phân bổ LẤP ĐẦY chiều cao card,
+   thêm vạch chia / cấu trúc → hết "list nhỏ trên card trống lớn".
+   ============================================================ */
+@media (min-width:1000px){
+
+  /* ---------- 1 · TITLE HIERARCHY: tiêu đề lớn 48–64px ---------- */
+  .head-center{ gap:.45rem; padding-left:1.15rem; border-left:9px solid var(--pvep-blue); }
+  .eyebrow{ font-size:clamp(.9rem,1.15vw,1.12rem); letter-spacing:.18em; }
+  .s-title, .s-title--sm{
+    font-size:clamp(2.7rem,4.9vw,4rem); line-height:1.03; font-weight:800; letter-spacing:-.02em;
+  }
+  .lead-note{ font-size:clamp(1.08rem,1.45vw,1.5rem); line-height:1.45; }
+
+  /* ---------- 2 · CARD TITLES: 34–44px ---------- */
+  .card4 h4{ font-size:clamp(1.35rem,2.05vw,1.85rem); line-height:1.12; }
+  .tri__k{ font-size:clamp(1.55rem,2.5vw,2.25rem); margin-bottom:.2rem; }
+  .panel__t{ font-size:clamp(1.45rem,2.25vw,2.05rem); margin-bottom:.55rem; }
+
+  /* ---------- 3 · BODY / BULLET: 22–28px ---------- */
+  .card4 p{ font-size:clamp(1.1rem,1.5vw,1.45rem); line-height:1.42; }
+  .rlist li{ font-size:clamp(1.18rem,1.6vw,1.58rem); line-height:1.4; padding-left:1.5rem; }
+  .rlist li::before{ width:11px; height:11px; top:.5em; }
+  .mt-foot .rlist li{ font-size:clamp(1.02rem,1.35vw,1.3rem); line-height:1.34; }
+
+  /* ---------- 4 · FILL CARDS: phân bổ nội dung hết chiều cao ---------- */
+  /* card4: icon trên · list/đoạn giãn giữa, lấp đầy */
+  .card4{ justify-content:space-between; gap:clamp(.65rem,1.5vh,1.2rem); padding:clamp(1.25rem,2.2vw,2rem); }
+  .card4__ic{ width:clamp(50px,4vw,66px); height:clamp(50px,4vw,66px); border-radius:16px; }
+  .card4__ic svg{ width:clamp(26px,2.2vw,34px); height:clamp(26px,2.2vw,34px); }
+  .card4 > .rlist{ flex:1 1 auto; justify-content:space-evenly; gap:clamp(.5rem,1.3vh,1rem); }
+  .card4 > p{ flex:1 1 auto; display:flex; align-items:center; }
+
+  /* tri__card: bullet có vạch chia dashed + giãn đều → đầy card */
+  .tri__card{ padding:clamp(1.4rem,2.5vw,2.3rem); gap:clamp(.6rem,1.4vh,1.15rem); }
+  .tri__card .rlist{ flex:1 1 auto; justify-content:space-evenly; gap:0; }
+  .tri__card .rlist li{ padding-top:clamp(.55rem,1.3vh,1rem); padding-bottom:clamp(.55rem,1.3vh,1rem);
+    border-bottom:1px dashed var(--ac-line); }
+  .tri__card .rlist li:first-child{ padding-top:0; }
+  .tri__card .rlist li:last-child{ border-bottom:0; padding-bottom:0; }
+
+  /* panel (duo16): list giãn đều lấp cột */
+  .panel{ display:flex; flex-direction:column; padding:clamp(1.4rem,2.4vw,2.1rem); }
+  .panel > .rlist{ flex:1 1 auto; justify-content:space-evenly; }
+
+  /* en (enabler / nhóm nguyên nhân): chữ lớn, lấp đều */
+  .en{ padding:clamp(.95rem,1.6vw,1.4rem); gap:.3rem; justify-content:center; }
+  .en__t{ font-size:clamp(1.05rem,1.5vw,1.4rem); line-height:1.15; }
+  .en__d{ font-size:clamp(.92rem,1.25vw,1.18rem); line-height:1.32; margin-top:.45rem; }
+  .en__no{ width:clamp(30px,2.6vw,38px); height:clamp(30px,2.6vw,38px); font-size:clamp(.85rem,1.1vw,1.05rem); border-radius:10px; }
+
+  /* pol__card: pitem chia đều toàn chiều cao */
+  .pol__card{ display:flex; flex-direction:column; padding:clamp(1.4rem,2.4vw,2.1rem); }
+  .pol__tag{ font-size:clamp(.85rem,1.15vw,1.08rem); margin-bottom:.4rem; }
+  .pol__card .pitem{ flex:1 1 auto; align-items:center; }
+  .pitem__t{ font-size:clamp(1.05rem,1.45vw,1.4rem); line-height:1.34; }
+  .pitem__n{ width:clamp(30px,2.6vw,38px); height:clamp(30px,2.6vw,38px); font-size:clamp(.9rem,1.15vw,1.1rem); }
+
+  /* ---------- 5 · KPI / MILESTONE / LEGEND chữ to ---------- */
+  .ms-card{ padding:clamp(1.3rem,2.4vw,2rem); display:flex; flex-direction:column; justify-content:center; gap:.3rem; }
+  .ms-q{ font-size:clamp(1.8rem,3.2vw,2.8rem); }
+  .ms-t{ font-size:clamp(1.15rem,1.8vw,1.5rem); }
+  .ms-d{ font-size:clamp(.95rem,1.3vw,1.2rem); line-height:1.35; }
+  .kpi3 span{ font-size:clamp(1rem,1.35vw,1.32rem); padding:.7rem 1.15rem; }
+  .legend__i{ font-size:clamp(1.05rem,1.45vw,1.42rem); }
+  .legend__i i{ width:18px; height:18px; }
+  .donut__c b{ font-size:clamp(2.2rem,4.4vw,3.4rem); }
+  .donut__c span{ font-size:clamp(1rem,1.4vw,1.35rem); }
+
+  /* chain (slide 3): bậc lớn + lấp đầy cột */
+  .chain{ flex:1 1 auto; justify-content:space-between; }
+  .chain__i{ font-size:clamp(1.05rem,1.45vw,1.4rem); padding:.72rem 1.1rem; }
+  .chain__i .n{ width:clamp(28px,2.4vw,34px); height:clamp(28px,2.4vw,34px); font-size:clamp(.85rem,1.1vw,1.05rem); }
+
+  /* tables đọc xa hơn */
+  .rtbl td{ font-size:clamp(1rem,1.35vw,1.3rem); }
+  .rtbl th{ font-size:clamp(.88rem,1.2vw,1.12rem); }
+
+  /* funnel chữ lớn */
+  .funnel__row{ font-size:clamp(1.05rem,1.5vw,1.4rem); padding:.9rem 1.2rem; }
+  .funnel__row b{ font-size:clamp(1.3rem,2.4vw,1.85rem); }
+}
+
+/* ============================================================
+   REBUILD 2026 — custom infographic blocks (15-slide deck mới)
+   ============================================================ */
+/* hero preview KPI (glass tiles trên video) */
+.hkpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(.5rem,1.2vw,1rem); margin:clamp(1rem,2.6vh,1.8rem) auto 0; max-width:1000px; }
+.hkpi{ background:rgba(255,255,255,.82); border:1px solid rgba(255,255,255,.7); border-radius:16px; padding:clamp(.7rem,1.4vw,1.05rem) .7rem; text-align:center;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 12px 32px rgba(10,42,74,.14); }
+.hkpi b{ display:block; font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1.5rem,3.4vw,2.7rem); line-height:1; }
+.hkpi b .un{ font-size:.4em; color:var(--ink-500); font-weight:700; }
+.hkpi span{ display:block; color:var(--ink-700); font-weight:600; font-size:clamp(.74rem,1.1vw,1rem); margin-top:.3rem; line-height:1.2; }
+.hkpi em{ display:inline-block; margin-top:.25rem; font-style:normal; font-family:var(--font-display); font-weight:800; font-size:clamp(.68rem,1vw,.86rem); color:var(--success); background:rgba(21,128,61,.12); padding:.12rem .55rem; border-radius:99px; }
+@media (max-width:768px){ .hkpis{ grid-template-columns:repeat(2,1fr); } }
+
+/* principle ribbon (6 bước) */
+.ribbon6{ display:flex; align-items:stretch; gap:.45rem; width:100%; max-width:1100px; margin:clamp(.9rem,2.4vh,1.6rem) auto 0; }
+.ribbon6 .rb{ flex:1; display:flex; align-items:center; gap:.5rem; background:rgba(255,255,255,.8); border:1px solid rgba(255,255,255,.7); border-radius:12px; padding:.55rem .6rem; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 8px 22px rgba(10,42,74,.10); }
+.ribbon6 .rb b{ width:30px; height:30px; border-radius:50%; flex:none; display:grid; place-content:center; color:#fff; font-family:var(--font-display); font-weight:800; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); font-size:.85rem; }
+.ribbon6 .rb span{ font-family:var(--font-display); font-weight:700; color:var(--pvep-navy); font-size:clamp(.72rem,1vw,.98rem); line-height:1.12; }
+@media (max-width:768px){ .ribbon6{ flex-wrap:wrap; } .ribbon6 .rb{ flex:1 1 30%; } }
+
+/* radial center diagram (1 lõi + nhánh 2 bên) */
+.radial{ display:grid; grid-template-columns:1fr minmax(220px,auto) 1fr; align-items:center; gap:clamp(1rem,3vw,2.6rem); width:100%; }
+.radial__core{ justify-self:center; text-align:center; border-radius:26px; padding:clamp(1.3rem,2.6vw,2.2rem) clamp(1.3rem,3vw,2.4rem); background:linear-gradient(140deg,var(--pvep-navy),var(--pvep-blue)); color:#fff; box-shadow:0 22px 54px rgba(0,131,199,.34); position:relative; }
+.radial__core .rc-logo{ height:38px; width:auto; object-fit:contain; margin-bottom:.6rem; filter:brightness(0) invert(1); }
+.radial__core b{ display:block; font-family:var(--font-display); font-weight:800; font-size:clamp(1.5rem,2.6vw,2.3rem); line-height:1.05; }
+.radial__core span{ font-size:clamp(.85rem,1.2vw,1.08rem); opacity:.92; display:block; margin-top:.3rem; }
+.radial__col{ display:flex; flex-direction:column; gap:clamp(.7rem,1.8vh,1.3rem); }
+.rnode{ background:#fff; border:1px solid var(--ac-line); border-radius:16px; padding:clamp(1rem,1.9vw,1.5rem); box-shadow:0 14px 36px rgba(10,42,74,.08); border-left:6px solid var(--pvep-blue); position:relative; transition:transform .3s, box-shadow .3s; }
+.rnode:hover{ transform:translateY(-5px); box-shadow:0 22px 50px rgba(0,131,199,.18); }
+.rnode h5{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1.1rem,1.7vw,1.5rem); display:flex; align-items:center; gap:.55rem; }
+.rnode h5 .rn-ic{ width:34px; height:34px; border-radius:10px; flex:none; display:grid; place-content:center; background:linear-gradient(135deg,rgba(0,131,199,.14),rgba(0,176,80,.14)); color:var(--pvep-blue); }
+.rnode h5 .rn-ic svg{ width:20px; height:20px; }
+.rnode p{ color:var(--ink-600); font-size:clamp(.95rem,1.3vw,1.2rem); line-height:1.36; margin-top:.4rem; }
+.rnode--g{ border-left-color:var(--pvep-green); } .rnode--g h5 .rn-ic{ color:var(--pvep-green); }
+.rnode--c{ border-left-color:var(--caution); } .rnode--c h5 .rn-ic{ color:var(--caution); }
+.rnode--n{ border-left-color:var(--pvep-navy); } .rnode--n h5 .rn-ic{ color:var(--pvep-navy); }
+@media (max-width:999px){ .radial{ grid-template-columns:1fr; } }
+
+/* stacked status bar (5 màu) */
+.statusbar{ display:flex; width:100%; height:clamp(60px,9vh,96px); border-radius:16px; overflow:hidden; box-shadow:0 14px 36px rgba(10,42,74,.12); }
+.statusbar > span{ display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-weight:800; font-size:clamp(1.1rem,2vw,1.8rem); line-height:1; gap:.15rem; min-width:0; padding:0 .2rem; }
+.statusbar > span small{ font-size:clamp(.6rem,.92vw,.82rem); font-weight:700; opacity:.95; white-space:nowrap; }
+.statuslegend{ display:flex; flex-wrap:wrap; gap:.55rem 1.2rem; justify-content:center; }
+.statuslegend span{ display:flex; align-items:center; gap:.5rem; font-size:clamp(.92rem,1.3vw,1.18rem); color:var(--ink-700); font-weight:600; }
+.statuslegend i{ width:16px; height:16px; border-radius:5px; flex:none; }
+
+/* số dạng phễu (166 → 114 → 08) */
+.numfunnel{ display:flex; align-items:center; justify-content:center; gap:clamp(.6rem,2vw,1.6rem); flex-wrap:wrap; }
+.numfunnel .nf{ text-align:center; background:#fff; border:1px solid var(--ac-line); border-radius:16px; padding:clamp(.7rem,1.5vw,1.2rem) clamp(1rem,2.4vw,1.9rem); box-shadow:0 12px 30px rgba(10,42,74,.07); }
+.numfunnel .nf b{ font-family:var(--font-display); font-weight:800; color:var(--pvep-blue); font-size:clamp(2.2rem,5vw,3.8rem); line-height:1; display:block; }
+.numfunnel .nf:nth-child(3) b{ color:var(--pvep-green); }
+.numfunnel .nf:nth-child(5) b{ color:var(--pvep-navy); }
+.numfunnel .nf span{ font-size:clamp(.82rem,1.2vw,1.08rem); color:var(--ink-600); font-weight:600; }
+.numfunnel .nf-arrow{ font-size:clamp(1.4rem,2.6vw,2.2rem); color:var(--pvep-blue); opacity:.5; font-family:var(--font-display); }
+
+/* icon row (nhóm lĩnh vực / ngành nghề) */
+.iconrow{ display:flex; gap:.55rem; flex-wrap:wrap; justify-content:center; }
+.iconrow .ic{ display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--ac-line); border-radius:99px; padding:.5rem 1rem; box-shadow:0 8px 20px rgba(10,42,74,.05); font-family:var(--font-display); font-weight:700; color:var(--pvep-navy); font-size:clamp(.85rem,1.2vw,1.08rem); }
+.iconrow .ic svg{ width:20px; height:20px; color:var(--pvep-blue); flex:none; }
+
+/* flow band (Chỉ đạo → Kết quả) + insight strip dùng chung */
+.flowband{ display:flex; align-items:center; justify-content:center; gap:clamp(.6rem,1.6vw,1.2rem); flex-wrap:wrap; background:linear-gradient(135deg,rgba(0,131,199,.10),rgba(0,176,80,.08)); border:1px solid var(--ac-line); border-radius:16px; padding:clamp(.7rem,1.6vh,1.1rem) clamp(1rem,2vw,1.6rem); }
+.flowband .fb{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1.05rem,1.7vw,1.5rem); }
+.flowband .fb-arrow{ font-size:clamp(1.3rem,2.4vw,2rem); color:var(--pvep-blue); }
+.insight{ background:#fff; border:1px solid var(--ac-line); border-left:6px solid var(--pvep-green); border-radius:14px; padding:clamp(.8rem,1.7vh,1.2rem) clamp(1rem,2vw,1.5rem); box-shadow:0 12px 30px rgba(10,42,74,.06); display:flex; align-items:center; gap:.8rem; }
+.insight.warn{ border-left-color:var(--warning); }
+.insight .ins-t{ font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(1rem,1.4vw,1.28rem); }
+.insight p{ color:var(--ink-600); font-size:clamp(.95rem,1.3vw,1.2rem); line-height:1.34; }
+
+/* before/after compare */
+.bna{ display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(.8rem,2vw,1.6rem); align-items:stretch; }
+.bna__c{ background:#fff; border:1px solid var(--ac-line); border-radius:16px; padding:clamp(1rem,2vw,1.5rem); box-shadow:0 12px 32px rgba(10,42,74,.06); }
+.bna__c h5{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.05rem,1.5vw,1.32rem); margin-bottom:.5rem; text-transform:uppercase; letter-spacing:.05em; }
+.bna__old{ border-top:5px solid var(--ink-500); } .bna__old h5{ color:var(--ink-500); }
+.bna__new{ border-top:5px solid var(--pvep-green); } .bna__new h5{ color:var(--success); }
+.bna__arrow{ align-self:center; font-size:clamp(1.6rem,3vw,2.4rem); color:var(--pvep-blue); }
+@media (max-width:768px){ .bna{ grid-template-columns:1fr; } .bna__arrow{ transform:rotate(90deg); } }
+
+/* grid 8 ô rủi ro (2×4) */
+.en-grid--4{ grid-template-columns:repeat(4,1fr); }
+@media (max-width:768px){ .en-grid--4{ grid-template-columns:1fr; } }
+
+/* ----- vertical funnel 166→114→08 (thay phễu phẳng) ----- */
+.vfunnel{ display:flex; flex-direction:column; align-items:center; gap:.4rem; }
+.vfunnel .vf{ display:flex; align-items:center; gap:.75rem; color:#fff; border-radius:14px; width:100%; padding:clamp(.7rem,1.4vw,1.05rem) clamp(.9rem,1.8vw,1.4rem); box-shadow:0 12px 30px rgba(0,131,199,.22); background:linear-gradient(135deg,var(--pvep-blue),#005f91); }
+.vfunnel .vf--2{ width:84%; background:linear-gradient(135deg,#0a7d3a,var(--pvep-green)); box-shadow:0 12px 30px rgba(0,176,80,.22); }
+.vfunnel .vf--3{ width:64%; background:linear-gradient(135deg,var(--pvep-navy),#13314f); box-shadow:0 12px 30px rgba(10,42,74,.25); }
+.vfunnel .vf-ic{ width:clamp(36px,3.2vw,50px); height:clamp(36px,3.2vw,50px); border-radius:12px; flex:none; display:grid; place-content:center; background:rgba(255,255,255,.18); }
+.vfunnel .vf-ic svg{ width:56%; height:56%; }
+.vfunnel .vf-tx b{ display:block; font-family:var(--font-display); font-weight:800; font-size:clamp(1.8rem,3.6vw,3rem); line-height:1; }
+.vfunnel .vf-tx span{ font-size:clamp(.8rem,1.1vw,1.05rem); opacity:.95; line-height:1.15; }
+.vfunnel .vf-arrow{ color:var(--pvep-blue); font-size:1.3rem; line-height:.5; opacity:.55; }
+
+/* ----- danh sách thống kê có icon (thay bảng) ----- */
+.grouphdr{ display:grid; grid-template-columns:1fr clamp(5rem,9vw,8rem) clamp(5rem,9vw,8rem); gap:.7rem; align-items:center; background:var(--pvep-navy); color:#fff; border-radius:12px; padding:.6rem 1rem; font-family:var(--font-display); font-weight:800; font-size:clamp(.74rem,1.05vw,.96rem); line-height:1.15; }
+.grouphdr span:not(:first-child){ text-align:center; }
+.grouplist{ display:flex; flex-direction:column; gap:.4rem; margin-top:.45rem; }
+.grow{ display:grid; grid-template-columns:1fr clamp(5rem,9vw,8rem) clamp(5rem,9vw,8rem); gap:.7rem; align-items:center; background:#fff; border:1px solid var(--ac-line); border-radius:12px; padding:.55rem .95rem; box-shadow:0 8px 20px rgba(10,42,74,.05); transition:transform .25s, box-shadow .25s, border-color .25s; }
+.grow:hover{ transform:translateX(5px); box-shadow:0 14px 30px rgba(0,131,199,.13); border-color:var(--pvep-blue); }
+.grow .g-name{ display:flex; align-items:center; gap:.7rem; font-family:var(--font-display); font-weight:700; color:var(--pvep-navy); font-size:clamp(.92rem,1.3vw,1.2rem); line-height:1.15; }
+.grow .g-ic{ width:clamp(36px,2.9vw,44px); height:clamp(36px,2.9vw,44px); border-radius:11px; flex:none; display:grid; place-content:center; background:linear-gradient(135deg,rgba(0,131,199,.14),rgba(0,176,80,.14)); color:var(--pvep-blue); }
+.grow .g-ic svg{ width:55%; height:55%; }
+.grow .g-num{ text-align:center; font-family:var(--font-display); font-weight:800; font-size:clamp(1.3rem,2.1vw,1.85rem); color:var(--ink-600); }
+.grow .g-num.b{ color:var(--pvep-blue); } .grow .g-num.g{ color:var(--pvep-green); }
+.grow--total{ background:linear-gradient(135deg,rgba(0,131,199,.10),rgba(0,176,80,.08)); border-color:rgba(0,131,199,.35); }
+.grow--total .g-name{ font-size:clamp(1rem,1.5vw,1.32rem); color:var(--pvep-navy); }
+
+/* ----- process flow ngang (5 bước) ----- */
+.procflow{ display:flex; align-items:stretch; gap:.35rem; width:100%; }
+.procflow .pf{ flex:1; background:#fff; border:1px solid var(--ac-line); border-top:3px solid var(--pvep-blue); border-radius:12px; padding:.6rem .75rem; box-shadow:0 8px 20px rgba(10,42,74,.05); display:flex; flex-direction:column; gap:.25rem; }
+.procflow .pf b{ display:flex; align-items:center; gap:.45rem; font-family:var(--font-display); font-weight:800; color:var(--pvep-navy); font-size:clamp(.78rem,1.1vw,1.02rem); line-height:1.12; }
+.procflow .pf b i{ width:23px; height:23px; border-radius:50%; flex:none; display:grid; place-content:center; background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; font-size:.72rem; font-style:normal; }
+.procflow .pf p{ color:var(--ink-600); font-size:clamp(.68rem,.95vw,.86rem); line-height:1.26; }
+.procflow .pf-arrow{ align-self:center; color:var(--pvep-blue); opacity:.5; font-weight:800; flex:none; font-size:1.1rem; }
+@media (max-width:768px){ .procflow{ flex-wrap:wrap; } .procflow .pf{ flex:1 1 46%; } .procflow .pf-arrow{ display:none; } }
+</style>
+</head>
+<body>
+
+<!-- ============ STATIC OFFSHORE BACKGROUND (content slides) ============ -->
+<div class="oilbg" aria-hidden="true"></div>
+
+<!-- progress bar -->
+<div class="progress"><div class="progress__fill" id="progressFill"></div></div>
+
+<!-- chapter rail -->
+<nav class="rail" aria-label="Chương">
+  <div class="rail__brand"><img src="PVEP.png" style="height:32px; width:auto; object-fit:contain;" alt="PVEP Logo" /><span class="rail__title">PVEP · HĐTV</span></div>
+  <div class="rail__sub">Báo cáo hiệu quả hoạt động · 6 tháng đầu 2026</div>
+  <div class="rail__item" data-chapter="0" data-target="0"><span class="dot"></span><span class="rail__num">I</span>Mở đầu</div>
+  <div class="rail__item" data-chapter="1" data-target="1"><span class="dot"></span><span class="rail__num">II</span>Vai trò &amp; khung quản trị</div>
+  <div class="rail__item" data-chapter="2" data-target="4"><span class="dot"></span><span class="rail__num">III</span>Tổng quan hoạt động 6T</div>
+  <div class="rail__item" data-chapter="3" data-target="7"><span class="dot"></span><span class="rail__num">IV</span>Kết quả &amp; nhóm trọng yếu</div>
+  <div class="rail__item" data-chapter="4" data-target="12"><span class="dot"></span><span class="rail__num">V</span>Tác động tổng thể</div>
+  <div class="rail__item" data-chapter="5" data-target="13"><span class="dot"></span><span class="rail__num">VI</span>Tồn tại &amp; rủi ro</div>
+  <div class="rail__item" data-chapter="6" data-target="14"><span class="dot"></span><span class="rail__num">VII</span>Chỉ đạo cuối năm</div>
+</nav>
+
+<!-- slide counter -->
+<div class="counter"><span id="cur">1</span><span class="sep">/</span><span id="tot">14</span></div>
+<div class="hint">← → chuyển slide · Home/End đầu/cuối</div>
+
+<!-- mobile swipe hint -->
+<div class="mhint" id="mhint" aria-hidden="true">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span>Vuốt để chuyển slide</span>
+</div>
+
+<!-- footer mọi slide -->
+<div class="deckfoot" aria-hidden="true">
+  <span class="deckfoot__l">Báo cáo hiệu quả hoạt động của HĐTV PVEP — 6 tháng đầu năm 2026</span>
+  <span class="deckfoot__c"></span>
+  <span class="deckfoot__r"><span id="footPage">1</span> / <span id="footTot">22</span></span>
+</div>
+
+<!-- ========================= SLIDE 1 — HERO ========================= -->
+<section class="slide" data-chapter="0" data-hero="1" style="background-color:#f8fafc;">
+  <div class="video-bg-wrap" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden; background:#f8fafc; pointer-events:none;">
+    <video id="heroVideo" autoplay muted loop playsinline="true" webkit-playsinline="true" x5-playsinline="true" disablePictureInPicture disableRemotePlayback preload="auto" src="assets/offshore-motion.mp4" style="display:block; position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:1; filter:contrast(1.05) brightness(1.08) saturate(1.04); pointer-events:none; transform:translateZ(0); z-index:1;"></video>
+    <div class="video-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(90deg, rgba(255,255,255,0.68) 0%, rgba(255,255,255,0.42) 28%, rgba(241,245,249,0.28) 58%, rgba(0,131,199,0.1) 100%); z-index:2; pointer-events:none;"></div>
+  </div>
+
+  <div class="slide-content" style="position:relative; z-index:2;"><div class="wrap" style="text-align:center">
+    <img src="PVEP.png" style="height:62px; width:auto; object-fit:contain; margin-bottom:.85rem; --i:0;" alt="PVEP Logo" class="ac-reveal" />
+    <div class="eyebrow ac-reveal" style="--i:1">Tổng Công ty Thăm dò Khai thác Dầu khí · Hội đồng Thành viên</div>
+    <h1 class="hero__word ac-reveal" style="--i:2">Báo cáo hiệu quả<br>hoạt động của HĐTV</h1>
+    <div class="hero__amp ac-reveal" style="--i:3; color:#fff">6 THÁNG ĐẦU NĂM 2026</div>
+    <p class="hero__tag jtype" style="color:#fff;" data-text="Quản trị định hướng — Phê duyệt trọng yếu — Giám sát thực thi">&nbsp;</p>
+    <div class="hkpis ac-reveal" style="--i:5">
+      <div class="hkpi"><b>2,20<span class="un"> tr tấn</span></b><span>Sản lượng khai thác quy dầu</span><em>▲ 109% KH 6T</em></div>
+      <div class="hkpi"><b>28.023<span class="un"> tỷ</span></b><span>Doanh thu hợp nhất</span><em>▲ 144% KH 6T</em></div>
+      <div class="hkpi"><b>9.252<span class="un"> tỷ</span></b><span>Lợi nhuận trước thuế</span><em>▲ 182% KH 6T</em></div>
+      <div class="hkpi"><b>10.859<span class="un"> tỷ</span></b><span>Nộp ngân sách Nhà nước</span><em>▲ 168% KH 6T</em></div>
+    </div>
+    <div class="ribbon6 ac-reveal" style="--i:6">
+      <div class="rb"><b>1</b><span>Chỉ đạo</span></div>
+      <div class="rb"><b>2</b><span>Thực hiện</span></div>
+      <div class="rb"><b>3</b><span>Kết quả</span></div>
+      <div class="rb"><b>4</b><span>Tác động</span></div>
+      <div class="rb"><b>5</b><span>Rủi ro</span></div>
+      <div class="rb"><b>6</b><span>Chỉ đạo tiếp</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 2 — Chức năng, vai trò & thẩm quyền HĐTV ========================= -->
+<section class="slide" data-chapter="1">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần II · Vai trò &amp; khung quản trị</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Chức năng, vai trò &amp; <span class="neo">thẩm quyền của HĐTV</span></h2>
+      <p class="lead-note ac-reveal" style="--i:2">HĐTV là <b>cơ quan đại diện chủ sở hữu trực tiếp</b> tại PVEP — vận hành theo ba trục chức năng cốt lõi.</p>
+    </div>
+    <div class="cards cards--3">
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:3"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg></div><h4>① Định hướng</h4><ul class="rlist"><li>Xác lập <b>mục tiêu, ưu tiên</b> chiến lược.</li><li>Ban hành <b>nguyên tắc quản trị</b>.</li><li>Định hình chương trình nghị sự của HĐTV.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:4"><div class="card4__ic" style="background:linear-gradient(135deg,rgba(0,176,80,.15),rgba(0,131,199,.12)); color:var(--pvep-green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></div><h4>② Quyết định · Phê duyệt</h4><ul class="rlist rlist--g"><li>Chiến lược &amp; <b>đầu tư</b>.</li><li><b>Tài chính</b> — vốn — quỹ.</li><li>Tổ chức – nhân sự – tiền lương.</li><li>Quy chế quản lý nội bộ.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:5"><div class="card4__ic" style="background:linear-gradient(135deg,rgba(217,119,6,.16),rgba(0,131,199,.10)); color:var(--caution)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div><h4>③ Giám sát</h4><ul class="rlist rlist--warn"><li>Kết quả KH &amp; <b>tiến độ dự án</b>.</li><li>Giải ngân — dòng tiền — vốn.</li><li>Tuân thủ &amp; <b>quản trị rủi ro</b>.</li></ul></div>
+    </div>
+    <div class="ac-reveal" style="--i:6; display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(.7rem,1.6vw,1.1rem)">
+      <div class="insight"><div><span class="ins-t">Phạm vi thẩm quyền</span><p>SXKD · đầu tư · tài chính · phát triển dự án mới · QTDN · QTRR–KSNB · tổ chức – nhân sự.</p></div></div>
+      <div class="insight warn"><div><span class="ins-t">Vượt thẩm quyền</span><p>Hoàn thiện hồ sơ → kiến nghị <b>Petrovietnam</b>.</p></div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 3 — Khung pháp lý Luật 68/2025 & OECD ========================= -->
+<section class="slide" data-chapter="1">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần II · Khung pháp lý mới</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Chức năng HĐTV theo <span class="neo">Luật 68/2025</span> &amp; chuẩn mực <span style="color:var(--caution)">OECD</span></h2>
+    </div>
+    <div class="duo16">
+      <div class="panel ac-reveal ac-reveal--left" style="--i:2">
+        <div class="panel__t"><span class="ti"></span>Nền tảng pháp lý mới</div>
+        <div style="display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin:.2rem 0 .8rem">
+          <span style="background:var(--bg-100); border:1px solid var(--ac-line); border-radius:10px; padding:.5rem .85rem; font-family:var(--font-display); font-weight:800; color:var(--ink-500); font-size:clamp(.85rem,1.2vw,1.05rem)">Luật 69/2014</span>
+          <span style="color:var(--pvep-blue); font-weight:800; font-size:1.4rem">→</span>
+          <span style="background:linear-gradient(135deg,var(--pvep-blue),var(--pvep-green)); color:#fff; border-radius:10px; padding:.5rem .85rem; font-family:var(--font-display); font-weight:800; font-size:clamp(.9rem,1.3vw,1.12rem); box-shadow:0 8px 20px rgba(0,131,199,.28)">Luật 68/2025/QH15 · 8 chương · 59 điều</span>
+        </div>
+        <ul class="rlist">
+          <li><b>Luật 68/2025/QH15</b> — QH thông qua 14/6/2025, hiệu lực 01/8/2025, thay Luật 69/2014.</li>
+          <li><b>NĐ 366/2025/NĐ-CP</b> — quản lý &amp; đầu tư vốn nhà nước tại doanh nghiệp.</li>
+          <li><b>NĐ 365/2025/NĐ-CP</b> — giám sát, kiểm tra, đánh giá, xếp loại &amp; công khai.</li>
+        </ul>
+      </div>
+      <div class="panel ac-reveal ac-reveal--right" style="--i:3">
+        <div class="panel__t"><span class="ti" style="background:var(--pvep-green)"></span>Điểm mới trao quyền cho HĐTV</div>
+        <ul class="rlist rlist--g">
+          <li>Tự quyết <b>ban hành/điều chỉnh chiến lược</b> &amp; kế hoạch kinh doanh hằng năm <i>(Điều 18.1)</i>.</li>
+          <li>Tự quyết đầu tư <b>≤ 50% VCSH</b> (trần 15.000 tỷ với DN quy mô lớn); vượt mức → trình cơ quan đại diện CSH.</li>
+          <li>Tách bạch <b>3 chức năng</b>: Quản lý nhà nước – Đại diện chủ sở hữu – Quản trị doanh nghiệp.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="insight ac-reveal" style="--i:4">
+      <div style="display:flex; flex-direction:column; gap:.5rem; width:100%">
+        <div style="display:flex; align-items:center; gap:.7rem; flex-wrap:wrap"><span class="ins-t">Nguyên tắc OECD PVEP hướng tới</span><span class="pill pill--y">🎯 Lộ trình cuối 2026</span></div>
+        <div class="iconrow" style="justify-content:flex-start">
+          <span class="ic">Minh bạch &amp; công bố thông tin</span>
+          <span class="ic">Trách nhiệm của HĐTV</span>
+          <span class="ic">Đối xử công bằng</span>
+          <span class="ic">Quản trị rủi ro</span>
+          <span class="ic">Kiểm soát nội bộ</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "6 nhóm cơ hội") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="cards cards--3">
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:2"><span class="opp-no">01</span><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M5 7l2 2M19 7l-2 2"/><rect x="6" y="10" width="12" height="10" rx="2"/><path d="M10 14h4"/></svg></div><h4>Chuỗi giá trị Khí / LNG</h4><p>Điện khí Nhơn Trạch 3&amp;4 · mở rộng LNG Thị Vải 2 · Sơn Mỹ.</p></div>
+      <div class="card4 opp-win ac-reveal ac-reveal--up" style="--i:3"><div class="opp-ribbon">SÁNG KIẾN NÀY</div><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg></div><h4>TD&amp;KT quốc tế</h4><p>Mục tiêu 1–2 tài sản thượng nguồn lớn tại các thị trường đối tác như Kuwait, Ai Cập, Malaysia.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:4"><span class="opp-no">03</span><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></div><h4>Thương mại quốc tế</h4><p>Phát triển thành lĩnh vực kinh doanh riêng của Tập đoàn.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:5"><span class="opp-no">04</span><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8M12 10l6 10H6l6-10z"/><path d="M12 10 7 4M12 10l5-6"/></svg></div><h4>Điện gió ngoài khơi</h4><p>Dự án 2GW kèm chuỗi sản xuất thiết bị, EPC và dịch vụ.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:6"><span class="opp-no">05</span><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V8l6-4 6 4v12"/><path d="M10 12h4M10 16h4"/></svg></div><h4>Tái cấu trúc hạ nguồn</h4><p>Nâng cấp BSR · hóa chất cơ bản · nhiên liệu sinh học.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:7"><span class="opp-no">06</span><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20M2 12h20"/></svg></div><h4>Năng lượng hạt nhân</h4><p>Dự án Ninh Thuận 2.</p></div>
+    </div>
+    <p class="lead-note ac-reveal" style="--i:8; margin-top:.9rem">Ba tiêu chí chấm điểm: <b>tiềm năng giá trị</b> · <b>phù hợp chương trình nghị sự quốc gia</b> · <b>tính khả thi</b>.</p>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 4 — Hệ sinh thái quản trị (radial) ========================= -->
+<section class="slide" data-chapter="1">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần II · Hệ sinh thái quản trị</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">HĐTV — <span class="neo">trung tâm kết nối</span> 4 chủ thể quản trị</h2>
+    </div>
+    <div class="radial ac-reveal" style="--i:2">
+      <div class="radial__col">
+        <div class="rnode rnode--n"><h5><span class="rn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>↔ Đảng ủy PVEP</h5><p>Cụ thể hóa Nghị quyết / Kết luận của Đảng ủy thành chỉ đạo điều hành.</p></div>
+        <div class="rnode"><h5><span class="rn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>○ Nội bộ HĐTV</h5><p>Phân công từng thành viên HĐTV chỉ đạo theo lĩnh vực <i>(CTr 119/TDKT-HĐTV)</i>.</p></div>
+      </div>
+      <div class="radial__core">
+        <img class="rc-logo" src="PVEP.png" alt="PVEP"/>
+        <b>HĐTV PVEP</b>
+        <span>Cơ quan đại diện<br>chủ sở hữu trực tiếp</span>
+      </div>
+      <div class="radial__col">
+        <div class="rnode rnode--g"><h5><span class="rn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>↑ Petrovietnam</h5><p>Trình, kiến nghị &amp; xin phê duyệt các nội dung vượt thẩm quyền.</p></div>
+        <div class="rnode rnode--c"><h5><span class="rn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></span>↓ Ban Điều hành</h5><p>Giao nhiệm vụ &amp; KPI, giám sát thực thi, yêu cầu giải trình.</p></div>
+      </div>
+    </div>
+    <div class="insight ac-reveal" style="--i:3">
+      <div><span class="ins-t">Cơ sở thể chế</span><p>Quy chế quan hệ công tác BCH Đảng bộ – BTV Đảng ủy – HĐTV – TGĐ <b>(QĐ 02-QĐ/ĐU, 25/02/2026)</b>.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "16 sáng kiến") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="duo16">
+      <div class="panel ac-reveal ac-reveal--left" style="--i:2">
+        <div class="panel__t"><span class="ti"></span>Cơ cấu 16 sáng kiến</div>
+        <div class="cbar">
+          <div class="cbar__h"><span class="cbar__n">Sáng kiến kinh doanh</span><span class="cbar__v" data-count-to="6" data-count-dur="1200">0</span></div>
+          <div class="cbar__track"><div class="cbar__fill ac-fill-x" style="--w:37.5%; --i:1"></div></div>
+        </div>
+        <div class="cbar cbar--g">
+          <div class="cbar__h"><span class="cbar__n">Sáng kiến hỗ trợ</span><span class="cbar__v" data-count-to="8" data-count-dur="1200">0</span></div>
+          <div class="cbar__track"><div class="cbar__fill ac-fill-x" style="--w:50%; --i:2"></div></div>
+        </div>
+        <div class="cbar cbar--n">
+          <div class="cbar__h"><span class="cbar__n">Sáng kiến nền tảng</span><span class="cbar__v" data-count-to="2" data-count-dur="1200">0</span></div>
+          <div class="cbar__track"><div class="cbar__fill ac-fill-x" style="--w:12.5%; --i:3"></div></div>
+        </div>
+        <p style="font-size:var(--small-size); color:var(--ink-600); line-height:1.4; margin-top:.5rem">Hai sáng kiến nền tảng: <b style="color:var(--ink-900)">quản lý triển khai chiến lược</b> và <b style="color:var(--ink-900)">cải thiện năng suất</b>. Toàn bộ do TMO (Văn phòng Quản lý Chuyển đổi) điều phối.</p>
+      </div>
+      <div class="panel ac-reveal ac-reveal--right" style="--i:3">
+        <div class="panel__t"><span class="ti"></span>Tác động kỳ vọng</div>
+        <div class="imp-list">
+          <div class="imp ac-reveal ac-reveal--up" style="--i:4"><span class="imp__n">~500 tr USD/năm</span><span class="imp__t">Tối ưu thương mại toàn cầu</span></div>
+          <div class="imp imp--g ac-reveal ac-reveal--up" style="--i:5"><span class="imp__n">3–4 tỷ USD</span><span class="imp__t">Doanh thu từ đầu tư</span></div>
+          <div class="imp ac-reveal ac-reveal--up" style="--i:6"><span class="imp__n">10–20 tỷ USD</span><span class="imp__t">Triển khai cùng đối tác</span></div>
+          <div class="imp imp--g ac-reveal ac-reveal--up" style="--i:7"><span class="imp__n">300–600 tr USD</span><span class="imp__t">Tiết kiệm chi phí dài hạn</span></div>
+          <div class="imp ac-reveal ac-reveal--up" style="--i:8"><span class="imp__n">+25%</span><span class="imp__t">Tăng trưởng doanh thu nhờ đổi mới sáng tạo</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 5 — Tổng quan hoạt động 6T (thống kê) ========================= -->
+<section class="slide" data-chapter="2">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần III · Tổng quan hoạt động 6T/2026</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">10 cuộc họp · 177 văn bản · <span class="neo">59 nhiệm vụ</span> · 28 chỉ đạo</h2>
+    </div>
+    <div class="bigrow" style="grid-template-columns:repeat(4,1fr)">
+      <div class="bignum ac-reveal ac-reveal--up" style="--i:2">
+        <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span></div>
+        <div class="bignum__n">10</div><div class="bignum__l">Cuộc họp HĐTV</div>
+        <div class="kpi-sub">Chiến lược · đầu tư · tài chính · nhân sự · rủi ro</div>
+      </div>
+      <div class="bignum ac-reveal ac-reveal--up" style="--i:3">
+        <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9 13h7M9 17h7"/></svg></span></div>
+        <div class="bignum__n">177</div><div class="bignum__l">Nghị quyết / QĐ / TBKL</div>
+        <div class="kpi-sub"><b>08</b> cụ thể hóa NQ/KL Đảng ủy</div>
+      </div>
+      <div class="bignum ac-reveal ac-reveal--up" style="--i:4">
+        <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></span></div>
+        <div class="bignum__n">59</div><div class="bignum__l">Nhiệm vụ giao Ban Điều hành</div>
+        <div class="kpi-sub"><b>25</b> hoàn thành · <b>04</b> quá hạn</div>
+      </div>
+      <div class="bignum ac-reveal ac-reveal--up" style="--i:5">
+        <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span></div>
+        <div class="bignum__n">28</div><div class="bignum__l">Chỉ đạo trọng tâm</div>
+        <div class="kpi-sub">Trọng tâm điều hành kỳ 6 tháng</div>
+      </div>
+    </div>
+    <div class="ac-reveal" style="--i:6; display:grid; grid-template-columns:auto 1fr; gap:clamp(1rem,3vw,2.4rem); align-items:center">
+      <div class="donut-wrap" style="margin:0; grid-template-columns:auto 1fr; gap:clamp(.8rem,2vw,1.4rem)">
+        <div class="donut" style="background:conic-gradient(var(--pvep-blue) 0 33.3%, var(--pvep-green) 33.3% 66.6%, var(--caution) 66.6% 100%)"><div class="donut__c"><b>177</b><span>văn bản</span></div></div>
+        <div class="legend">
+          <div class="legend__i"><i style="background:var(--pvep-blue)"></i>Định hướng chiến lược</div>
+          <div class="legend__i"><i style="background:var(--pvep-green)"></i>Phê duyệt thuộc thẩm quyền</div>
+          <div class="legend__i"><i style="background:var(--caution)"></i>Giám sát rủi ro &amp; kiểm soát</div>
+        </div>
+      </div>
+      <div>
+        <div class="panel__t" style="margin-bottom:.6rem"><span class="ti"></span>Phân nhóm theo 7 lĩnh vực</div>
+        <div class="iconrow" style="justify-content:flex-start">
+          <span class="ic">CL – KH</span><span class="ic">Đầu tư – Pháp lý DA</span><span class="ic">Tài chính</span>
+          <span class="ic">QTDN – VBQLNB</span><span class="ic">QTRR – KSNB</span><span class="ic">Tổ chức – Nhân sự</span><span class="ic">KHCN – ĐMST – CĐS</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "8+1 yếu tố hỗ trợ") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="en-grid">
+      <div class="en ac-reveal ac-reveal--up" style="--i:2"><div class="en__h"><span class="en__no">1</span><span class="en__t">Tái cấu trúc PVN</span></div><div class="en__d">Giảm <b>30–40%</b> thời gian phê duyệt.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:3"><div class="en__h"><span class="en__no">2</span><span class="en__t">Tổ công tác chính sách</span></div><div class="en__d">Thúc đẩy <b>5–7</b> thay đổi chính sách trong 18 tháng đầu.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:4"><div class="en__h"><span class="en__no">3</span><span class="en__t">PVN Digital Factory</span></div><div class="en__d">Tiềm năng mang lại <b>200–300 triệu USD</b>.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:5"><div class="en__h"><span class="en__no">4</span><span class="en__t">Gia tốc M&amp;A</span></div><div class="en__d"><b>3–5 tỷ USD</b> tăng trưởng qua thương vụ có mục tiêu.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:6"><div class="en__h"><span class="en__no">5</span><span class="en__t">Hợp tác chiến lược</span></div><div class="en__d">Hình thành <b>3–5</b> đối tác then chốt.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:7"><div class="en__h"><span class="en__no">6</span><span class="en__t">Nhân tài thế hệ mới</span></div><div class="en__d"><b>100+</b> nhân tài đặc biệt mỗi năm · chương trình PVU 2.0.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:8"><div class="en__h"><span class="en__no">7</span><span class="en__t">Chuyển đổi tài chính</span></div><div class="en__d">Huy động <b>5–10 tỷ USD</b> vốn đầu tư mới.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:9"><div class="en__h"><span class="en__no">8</span><span class="en__t">Công nghệ xuất sắc</span></div><div class="en__d">Trung tâm Xuất sắc (CoE) về công nghệ.</div></div>
+      <div class="en en--plus ac-reveal ac-reveal--up" style="--i:10"><div class="en__h"><span class="en__no">+1</span><span class="en__t">Quản lý triển khai chiến lược</span></div><div class="en__d">Bảo đảm <b>100%</b> sáng kiến đúng tiến độ.</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 6 — Kết quả 59 nhiệm vụ ========================= -->
+<section class="slide" data-chapter="2">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần III · Theo dõi thực hiện nhiệm vụ</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Kết quả thực hiện <span class="neo">59 nhiệm vụ</span> HĐTV giao</h2>
+    </div>
+    <div class="ac-reveal" style="--i:2; display:grid; grid-template-columns:auto 1fr; gap:clamp(1rem,3vw,2.2rem); align-items:center">
+      <div class="stat stat--g" style="padding:clamp(1.1rem,2.4vw,1.8rem) clamp(1.4rem,3vw,2.4rem)">
+        <div class="stat__n">88<span class="un">%</span></div>
+        <div class="stat__l">Hoàn thành hoặc<br>đang triển khai đúng hạn</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:clamp(.7rem,1.8vh,1.1rem)">
+        <div class="statusbar">
+          <span style="flex:0 0 42%; background:#16A34A">25<small>Hoàn thành</small></span>
+          <span style="flex:0 0 46%; background:var(--pvep-blue)">27<small>Đúng hạn</small></span>
+          <span style="flex:0 0 7%; background:var(--danger)">04</span>
+          <span style="flex:0 0 2%; background:var(--caution)"></span>
+          <span style="flex:0 0 3%; background:var(--pvep-navy)"></span>
+        </div>
+        <div class="statuslegend" style="justify-content:flex-start">
+          <span><i style="background:#16A34A"></i>Đã hoàn thành · <b>25 (42%)</b></span>
+          <span><i style="background:var(--pvep-blue)"></i>Đang triển khai đúng hạn · <b>27 (46%)</b></span>
+          <span><i style="background:var(--caution)"></i>Nguy cơ chậm · <b>01 (2%)</b></span>
+          <span><i style="background:var(--danger)"></i>Chậm / quá hạn · <b>04 (7%)</b></span>
+          <span><i style="background:var(--pvep-navy)"></i>Dừng / điều chỉnh · <b>02 (3%)</b></span>
+        </div>
+      </div>
+    </div>
+    <div class="insight ac-reveal" style="--i:3">
+      <div style="width:100%">
+        <span class="ins-t">Chuẩn hóa mỗi nhiệm vụ trước khi trình</span>
+        <div class="iconrow" style="justify-content:flex-start; margin-top:.5rem">
+          <span class="ic">Sản phẩm đầu ra</span><span class="ic">Bằng chứng hoàn thành</span><span class="ic">Đầu mối</span><span class="ic">Thời hạn</span><span class="ic">Mức độ rủi ro</span><span class="ic">Tác động nếu chậm</span><span class="ic">Chỉ đạo tiếp theo</span>
+        </div>
+      </div>
+    </div>
+    <p class="note ac-reveal" style="--i:4">⚠ Cần rà soát, đối chiếu số liệu trạng thái nhiệm vụ trước khi trình HĐTV.</p>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Khung quản trị") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="gov">
+      <div class="gov__tower ac-reveal ac-reveal--left" style="--i:2">
+        <div class="gtier gtier--top"><span class="gtier__k">BAN CHỈ ĐẠO</span><div><div class="gtier__t">Ban Chỉ đạo Chuyển đổi</div><div class="gtier__d">Chủ tịch: Chủ tịch HĐTV · Phó Chủ tịch: Tổng Giám đốc / thành viên HĐTV. Giám đốc Chuyển đổi: thành viên HĐTV hoặc Ban TGĐ.</div></div></div>
+        <div class="gconn">▼</div>
+        <div class="gtier"><span class="gtier__k">TẦNG 1</span><div><div class="gtier__t">Thành viên HĐTV chỉ đạo</div><div class="gtier__d">Định hướng và giám sát cấp cao đối với sáng kiến.</div></div></div>
+        <div class="gconn">▼</div>
+        <div class="gtier"><span class="gtier__k">TẦNG 2</span><div><div class="gtier__t">Nhà bảo trợ cấp Ban Tổng Giám đốc</div><div class="gtier__d">Tháo gỡ nguồn lực, kết nối liên Ban.</div></div></div>
+        <div class="gconn">▼</div>
+        <div class="gtier"><span class="gtier__k">TẦNG 3</span><div><div class="gtier__t">Chủ sở hữu sáng kiến cấp Trưởng Ban</div><div class="gtier__d">Chịu trách nhiệm kết quả triển khai hằng ngày.</div></div></div>
+      </div>
+      <div class="gov__p ac-reveal ac-reveal--right" style="--i:3">
+        <div class="panel__t"><span class="ti" style="background:var(--pvep-green)"></span>Áp dụng cho sáng kiến TD&amp;KT quốc tế</div>
+        <div class="gp-row"><span class="gp-av">CĐ</span><div><div class="gp-role">Chỉ đạo · HĐTV</div><div class="gp-name">Ông Trần Bình Minh</div><div class="gp-sub">Thành viên Hội đồng Thành viên Petrovietnam</div></div></div>
+        <div class="gp-row"><span class="gp-av">BT</span><div><div class="gp-role">Bảo trợ</div><div class="gp-name">Ông Lê Mạnh Cường</div><div class="gp-sub">Tổng Giám đốc Petrovietnam</div></div></div>
+        <div class="gp-row"><span class="gp-av">SH</span><div><div class="gp-role">Chủ sở hữu sáng kiến</div><div class="gp-name">Trưởng Ban Thăm dò Khai thác</div><div class="gp-sub">Petrovietnam</div></div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 7 — Thực hiện NQ/KL Đảng ủy ========================= -->
+<section class="slide" data-chapter="2">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần III · Thực hiện NQ, KL của Đảng ủy PVEP</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Cụ thể hóa 114 văn bản Đảng ủy thành <span class="neo">chỉ đạo điều hành</span></h2>
+    </div>
+    <div class="ac-reveal" style="--i:2; display:grid; grid-template-columns:0.82fr 1.45fr; gap:clamp(1rem,3vw,2.4rem); align-items:center">
+      <div class="vfunnel">
+        <div class="vf"><span class="vf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="vf-tx"><b>166</b><span>Văn bản Đảng ủy ban hành</span></span></div>
+        <span class="vf-arrow">▼</span>
+        <div class="vf vf--2"><span class="vf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"/></svg></span><span class="vf-tx"><b>114</b><span>NQ / KH / KL / QĐ (cần cụ thể hóa)</span></span></div>
+        <span class="vf-arrow">▼</span>
+        <div class="vf vf--3"><span class="vf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="vf-tx"><b>08</b><span>VB chỉ đạo của HĐTV</span></span></div>
+      </div>
+      <div>
+        <div class="grouphdr"><span>Nhóm chức năng</span><span>VB Đảng ủy</span><span>VB chỉ đạo HĐTV</span></div>
+        <div class="grouplist">
+          <div class="grow"><span class="g-name"><span class="g-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span>Quản trị / Quản lý doanh nghiệp</span><span class="g-num">35</span><span class="g-num b">02</span></div>
+          <div class="grow"><span class="g-name"><span class="g-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></span>Chiến lược, Đầu tư &amp; Tài chính</span><span class="g-num">02</span><span class="g-num b">01</span></div>
+          <div class="grow"><span class="g-name"><span class="g-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20M2 12h20"/></svg></span>KHCN, ĐMST &amp; CĐS</span><span class="g-num">01</span><span class="g-num g">04</span></div>
+          <div class="grow"><span class="g-name"><span class="g-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>Cán bộ, Nhân sự</span><span class="g-num">30</span><span class="g-num b">01</span></div>
+          <div class="grow"><span class="g-name"><span class="g-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span>Nhóm vấn đề khác <span style="color:var(--ink-500); font-weight:500">(phát triển đảng, kết nạp…)</span></span><span class="g-num">46</span><span class="g-num">–</span></div>
+          <div class="grow grow--total"><span class="g-name">TỔNG CỘNG</span><span class="g-num b">114</span><span class="g-num g">08</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="procflow ac-reveal" style="--i:3">
+      <div class="pf"><b><i>1</i>Tiếp nhận</b><p>Nghị quyết, kết luận, kế hoạch của Đảng ủy.</p></div>
+      <span class="pf-arrow">➜</span>
+      <div class="pf"><b><i>2</i>Nghiên cứu – phân tích</b><p>Đánh giá tác động, phân công, xây dựng phương án.</p></div>
+      <span class="pf-arrow">➜</span>
+      <div class="pf"><b><i>3</i>Cụ thể hóa</b><p>Ban hành NQ / QĐ / TBKL của HĐTV.</p></div>
+      <span class="pf-arrow">➜</span>
+      <div class="pf"><b><i>4</i>Tổ chức thực hiện</b><p>Giao nhiệm vụ Ban Điều hành, theo dõi tiến độ.</p></div>
+      <span class="pf-arrow">➜</span>
+      <div class="pf"><b><i>5</i>Đánh giá – báo cáo</b><p>Đánh giá kết quả, báo cáo lại Đảng ủy.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Điều lệ sáng kiến") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center" style="margin-bottom:.3rem">
+      <div class="eyebrow ac-reveal" style="--i:0">Điều lệ sáng kiến TD&amp;KT quốc tế</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Tác động tài chính mục tiêu</h2>
+    </div>
+    <div class="charter-big ac-reveal" style="--i:2">
+      <div class="charter-big__n">1,8–2,7 tỷ USD / năm</div>
+      <div class="charter-big__l">Doanh thu hàng năm vào 2030 — tùy tiến độ giải ngân và mức góp vốn</div>
+    </div>
+    <div class="cards cards--3">
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:3"><span class="tri__k">Mục tiêu</span>
+        <ul class="rlist"><li>Bảo đảm gia tăng trữ lượng quốc tế.</li><li>Đa dạng hóa danh mục đầu tư ra nước ngoài.</li><li>Thúc đẩy doanh thu và an ninh năng lượng.</li></ul>
+      </div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:4; border-top-color:var(--pvep-green)"><span class="tri__k">Cơ chế hỗ trợ</span>
+        <ul class="rlist rlist--g"><li>Thỏa thuận G2G mở đường tiếp cận thị trường.</li><li>Huy động 5–10 tỷ USD vốn đa kênh.</li><li>Đối tác dài hạn với 2–3 NOC/IOC lớn (Eni, Perenco, Assala).</li><li>Nhân sự tinh nhuệ qua đào tạo và biệt phái.</li></ul>
+      </div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:5; border-top-color:var(--caution)"><span class="tri__k">3 KPI đo lường</span>
+        <ul class="rlist rlist--warn"><li>Số thị trường ưu tiên / danh sách tài sản.</li><li>Số thương vụ M&amp;A / farm-in hoàn thành.</li><li>Trữ lượng quốc tế đóng góp (mmboe).</li></ul>
+      </div>
+    </div>
+    <p class="lead-note ac-reveal" style="--i:6; margin-top:.8rem">Ba hoạt động chính: <b>bộ khung đánh giá quốc tế &amp; chỉ số sàng lọc tài sản</b> áp dụng toàn Petrovietnam · <b>chiến lược tiếp cận thị trường</b> · <b>lực lượng nhân sự tinh nhuệ</b> cho đầu tư ra nước ngoài.</p>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 8 — Kết quả SXKD & tài chính nổi bật ========================= -->
+<section class="slide" data-chapter="3">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="mt">
+      <div class="mt-banner ac-reveal" style="--i:0">
+        <div class="mt-banner__t">Kết quả SXKD &amp; tài chính nổi bật 6T/2026</div>
+        <span class="pill pill--g">🟢 Vượt mức kế hoạch</span>
+        <div class="mt-banner__c">Vượt mức kế hoạch 6 tháng, tăng trưởng mạnh so với cùng kỳ — nền tảng từ giá dầu &amp; sản lượng thuận lợi.</div>
+      </div>
+      <div class="mt-mid ac-reveal" style="--i:1; display:flex; flex-direction:column; gap:clamp(.6rem,1.6vh,1rem); justify-content:center">
+        <div class="bigrow" style="grid-template-columns:repeat(4,1fr)">
+          <div class="bignum">
+            <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></span><span class="trend trend--up">▲ 144%</span></div>
+            <div class="bignum__n">28.023</div><div class="bignum__l">Doanh thu hợp nhất · tỷ đồng</div>
+            <div class="bmk"><i style="width:100%"></i><u style="left:69%"></u></div><div class="kpi-sub"><b>+75%</b> so với cùng kỳ</div>
+          </div>
+          <div class="bignum">
+            <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span class="trend trend--up">▲ 182%</span></div>
+            <div class="bignum__n">9.252</div><div class="bignum__l">LNTT · tỷ đồng</div>
+            <div class="bmk"><i style="width:100%"></i><u style="left:55%"></u></div><div class="kpi-sub">Cao nhất nhóm</div>
+          </div>
+          <div class="bignum">
+            <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span><span class="trend trend--up">▲ 114%</span></div>
+            <div class="bignum__n">5.681</div><div class="bignum__l">LNST · tỷ đồng</div>
+            <div class="bmk"><i style="width:100%"></i><u style="left:88%"></u></div><div class="kpi-sub">Đã <b>vượt KH cả năm</b></div>
+          </div>
+          <div class="bignum">
+            <div class="bn-top"><span class="bn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><span class="trend trend--up">▲ 168%</span></div>
+            <div class="bignum__n">10.859</div><div class="bignum__l">Nộp NSNN · tỷ đồng</div>
+            <div class="bmk"><i style="width:100%"></i><u style="left:60%"></u></div><div class="kpi-sub">Vượt <b>68%</b> KH 6T</div>
+          </div>
+        </div>
+        <div class="statgrid">
+          <div class="stat"><div class="stat__n">2,20<span class="un"> tr tấn</span></div><div class="stat__l">Sản lượng khai thác quy dầu</div><div class="stat__s">109% KH 6T · 54% KH năm · +34% cùng kỳ</div></div>
+          <div class="stat stat--g"><div class="stat__n">99,4<span class="un">%</span></div><div class="stat__l">Hệ số vận hành (uptime)</div><div class="stat__s">KH 98,68% · cùng kỳ 95%</div></div>
+          <div class="stat stat--n"><div class="stat__n">1.051<span class="un"> tỷ</span></div><div class="stat__l">Doanh thu quốc tế</div><div class="stat__s">+12% so với kế hoạch</div></div>
+        </div>
+      </div>
+      <div class="mt-foot ac-reveal" style="--i:2">
+        <div class="mt-foot__col mt-foot__col--warn"><div class="mt-foot__h">⚠ Cảnh báo nền tảng</div><ul class="rlist rlist--warn"><li>Kết quả phần lớn nhờ <b>giá dầu &amp; sản lượng thuận lợi</b> nửa đầu năm.</li><li>Rủi ro đảo chiều giá dầu trong 6 tháng cuối năm.</li></ul></div>
+        <div class="mt-foot__col mt-foot__col--act"><div class="mt-foot__h">→ Điểm mạnh</div><ul class="rlist rlist--g"><li>LNST đã đạt <b>114% kế hoạch cả năm</b> chỉ sau 6 tháng.</li><li>Nộp NSNN &amp; doanh thu đều vượt xa kế hoạch.</li></ul></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Quy trình 5 bước") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center" style="margin-bottom:.3rem">
+      <div class="eyebrow ac-reveal" style="--i:0">Quy trình tiếp cận thị trường · bấm từng bước</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Năm bước từ bản đồ trữ lượng đến <span class="neo">phê duyệt đầu tư</span></h2>
+    </div>
+    <div class="steps5 ac-reveal" style="--i:2">
+      <div class="s5-track"><span class="s5-fill" id="s5Fill" style="width:0%"></span></div>
+      <div class="s5" id="s5Steps">
+        <button class="s5__step on" data-s="0"><b>1</b><span>Bản đồ trữ lượng toàn cầu</span></button>
+        <button class="s5__step" data-s="1"><b>2</b><span>Sàng lọc theo tiêu chí đầu tư</span></button>
+        <button class="s5__step" data-s="2"><b>3</b><span>Đánh giá đối tác / công ty</span></button>
+        <button class="s5__step" data-s="3"><b>4</b><span>Tiếp cận ban đầu</span></button>
+        <button class="s5__step" data-s="4"><b>5</b><span>Thẩm định &amp; phê duyệt</span></button>
+      </div>
+    </div>
+    <div class="step-info ac-reveal" style="--i:3" id="stepInfo">
+      <div class="step-info__t"><span class="step-info__no" id="stepNo">1</span><span id="stepT">Lập bản đồ trữ lượng toàn cầu</span></div>
+      <p id="stepD" style="font-size:var(--small-size); color:var(--ink-600); line-height:1.45"></p>
+    </div>
+    <p class="lead-note ac-reveal" style="--i:4; margin-top:.7rem; font-size:var(--small-size); color:var(--ink-500)">Bấm vào từng bước để xem nội dung chi tiết.</p>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 9 — Nhóm trọng yếu (1) Chiến lược–TKTD–PTM ========================= -->
+<section class="slide" data-chapter="3">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần IV · Đánh giá nhóm trọng yếu (1/3)</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Chiến lược – TKTD – <span class="neo">Phát triển mỏ</span></h2>
+    </div>
+    <div class="cards cards--3">
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:2"><span class="tri__k">① Chiến lược &amp; KH 5 năm</span>
+        <ul class="rlist"><li><b>QĐ 2436</b> giao KH SXKD 2026.</li><li>CTr hành động <b>119</b> (10/02/2026).</li><li>Đang hoàn thiện <b>Chiến lược đến 2030</b>, tầm nhìn 2050.</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:3; border-top-color:var(--pvep-green)"><span class="tri__k">② Tìm kiếm – Thăm dò</span>
+        <ul class="rlist rlist--g"><li>Triển khai <b>09/13 giếng</b>, hoàn thành 06.</li><li>Phát hiện khí <b>RDM-1X: 242,5 BCF</b>.</li><li><b>14 BCSDV</b> được HĐTV phê duyệt.</li><li>GT trữ lượng khoan TD–TL <b>1,48 tr tấn</b> (32% KH năm).</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:4; border-top-color:var(--caution)"><span class="tri__k">③ Đầu tư &amp; phát triển mỏ</span>
+        <ul class="rlist rlist--warn"><li>KM–Đầm Dơi <b>~347,68 tr USD</b>.</li><li>Kình Ngư Vàng <b>262,48 tr USD</b>.</li><li>Thăng Long–Đông Đô <b>102,9 tr USD</b>.</li><li>SĐ–SV <b>44,31 tr USD</b> · trao thầu EPCIC/EPCI.</li></ul></div>
+    </div>
+    <div class="ac-reveal" style="--i:5">
+      <div class="panel__t" style="margin-bottom:.5rem"><span class="ti" style="background:var(--pvep-green)"></span>Mốc tiến độ First Oil / First Gas</div>
+      <div class="ms-grid">
+        <div class="ms-card"><div class="ms-q">T6/2026</div><div class="ms-t">First Gas sớm STT Pha 2B</div><div class="ms-d">Đưa dòng khí đầu tiên sớm hơn kế hoạch.</div></div>
+        <div class="ms-card"><div class="ms-q">T10/2026</div><div class="ms-t">First Oil Lạc Đà Vàng</div><div class="ms-d">2027: FO/FG Đại Hùng Nam, Kình Ngư Vàng, KM–Đầm Dơi.</div></div>
+        <div class="ms-card"><div class="ms-q">Q3/2027</div><div class="ms-t">First Gas Lô B</div><div class="ms-d">Mốc trọng điểm chuỗi khí Lô B – Ô Môn.</div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Bản đồ thị trường") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center" style="margin-bottom:.3rem">
+      <div class="eyebrow ac-reveal" style="--i:0">Định hướng thị trường mục tiêu · bấm từng quốc gia</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Bản đồ thị trường theo <span class="neo">giá hòa vốn</span> và <span style="color:var(--caution)">rủi ro quốc gia</span></h2>
+    </div>
+    <div class="mkt">
+      <div class="mk-chart ac-reveal ac-reveal--left" style="--i:2" id="mkChart">
+        <div class="mk-zone mk-zone--safe"><span>ỔN ĐỊNH ·<br>CẠNH TRANH CAO</span></div>
+        <div class="mk-zone mk-zone--risk"><span>GIÀU TÀI NGUYÊN ·<br>RỦI RO CAO</span></div>
+        <span class="mk-axis x">Giá dầu hòa vốn (Rystad) — thấp → cao</span>
+        <span class="mk-axis y">Chỉ số dễ tổn thương FSI — thấp → cao</span>
+        <button class="mk-dot mk-dot--lg on" data-c="uae" style="left:16%; bottom:80%"><i>UAE</i></button>
+        <button class="mk-dot mk-dot--md" data-c="qatar" style="left:24%; bottom:87%"><i>Qatar</i></button>
+        <button class="mk-dot mk-dot--lg" data-c="kuwait" style="left:11%; bottom:68%"><i>Kuwait</i></button>
+        <button class="mk-dot mk-dot--md mk-dot--risk" data-c="kazakhstan" style="left:58%; bottom:42%"><i>Kazakhstan</i></button>
+        <button class="mk-dot mk-dot--lg mk-dot--risk" data-c="algeria" style="left:66%; bottom:28%"><i>Algeria</i></button>
+        <button class="mk-dot mk-dot--md mk-dot--risk" data-c="egypt" style="left:48%; bottom:18%"><i>Ai Cập</i></button>
+        <button class="mk-dot mk-dot--md mk-dot--ru" data-c="russia" style="left:38%; bottom:38%"><i>Nga</i></button>
+      </div>
+      <div class="mk-panel ac-reveal ac-reveal--right" style="--i:3" id="mkPanel">
+        <div class="mk-panel__h"><span class="mk-panel__name" id="mkName">UAE</span><span class="mk-badge" id="mkBadge">Ổn định · cạnh tranh cao</span></div>
+        <ul class="rlist" id="mkList"></ul>
+        <div class="mk-chiprow" id="mkChips">
+          <button class="mk-chip on" data-c="uae">UAE</button>
+          <button class="mk-chip" data-c="kuwait">Kuwait</button>
+          <button class="mk-chip" data-c="qatar">Qatar</button>
+          <button class="mk-chip" data-c="algeria">Algeria</button>
+          <button class="mk-chip" data-c="egypt">Ai Cập</button>
+          <button class="mk-chip" data-c="kazakhstan">Kazakhstan</button>
+          <button class="mk-chip" data-c="russia">Nga</button>
+        </div>
+        <p style="font-size:clamp(.62rem,1.1vw,.78rem); color:var(--ink-500); line-height:1.35; margin-top:auto">Vị trí và kích thước điểm mang tính minh họa theo định hướng trong tài liệu; số liệu chi tiết theo Rystad và FSI trong bộ slide gốc. Kích thước điểm gợi tả quy mô tài nguyên.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 10 — Nhóm trọng yếu (2) Dự án mới/M&A–Tài chính–QTDN ========================= -->
+<section class="slide" data-chapter="3">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần IV · Đánh giá nhóm trọng yếu (2/3)</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Dự án mới / M&amp;A – Tài chính – <span class="neo">Quản trị DN</span></h2>
+    </div>
+    <div class="cards cards--3">
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:2"><span class="tri__k">① Dự án mới / M&amp;A / ĐTNN</span>
+        <ul class="rlist"><li>Lập <b>Ban PT&amp;KD sản phẩm mới</b> (QĐ 238).</li><li>Ký <b>PSC Lô 10/11</b> và 10&amp;11-1.</li><li>Mục tiêu SL nước ngoài <b>30% vào 2030</b>.</li><li style="color:var(--danger)">⚠ Giải ngân ĐTNN dự án mới <b>0%</b>.</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:3; border-top-color:var(--pvep-green)"><span class="tri__k">② Tài chính</span>
+        <ul class="rlist rlist--g"><li>Đưa nguồn vốn thành <b>rủi ro chiến lược</b> cấp HĐTV.</li><li>Đề xuất tăng VĐL <b>+25.785 tỷ</b> (~1 tỷ USD).</li><li>Chuẩn hóa IFRS, xếp hạng tín nhiệm.</li><li>Xử lý khoản <b>Lô 11-2</b>.</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:4; border-top-color:var(--pvep-navy)"><span class="tri__k">③ QTDN &amp; VBQLNB</span>
+        <ul class="rlist"><li>KH VBQLNB 2026 (<b>QĐ 2451</b>): 10 văn bản.</li><li>Đã ban hành <b>01/06</b> theo KH + 09 ngoài KH.</li><li><b>NQ 5140</b> chấp thuận bổ sung ngành nghề.</li></ul></div>
+    </div>
+    <div class="insight ac-reveal" style="--i:5">
+      <div style="width:100%">
+        <div style="display:flex; align-items:center; gap:.7rem; flex-wrap:wrap"><span class="ins-t">Ngành nghề mới được chấp thuận (NQ 5140)</span></div>
+        <div class="iconrow" style="justify-content:flex-start; margin-top:.5rem">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7M12 5v14"/></svg>Khoáng sản đáy biển</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0 3-3m-3 3L9 5M5 14a7 7 0 1 0 14 0"/></svg>CCS / CCUS</span>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v9M9 21h6M12 12 6 6M12 12l6-6M12 12V3"/></svg>Điện gió ngoài khơi</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "5 nhóm thay đổi chính sách") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Điều kiện thực thi · triển khai song song</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Năm nhóm <span class="neo">thay đổi chính sách</span></h2>
+    </div>
+    <div class="pol">
+      <div class="pol__card ac-reveal ac-reveal--left" style="--i:2">
+        <div class="pol__tag">Nhóm khung chính sách nội bộ</div>
+        <div class="pitem"><span class="pitem__n">1</span><span class="pitem__t"><b>Phân cấp thẩm quyền đầu tư TD&amp;KT</b> — rút ngắn chuỗi quyết định cho các thương vụ quốc tế.</span></div>
+        <div class="pitem"><span class="pitem__n">2</span><span class="pitem__t"><b>Chuẩn hóa quy trình đầu tư ra nước ngoài</b> — một quy trình thống nhất áp dụng toàn Tập đoàn.</span></div>
+        <div class="pitem"><span class="pitem__n">3</span><span class="pitem__t"><b>Linh hoạt cấu trúc giao dịch</b> — công ty đầu tư ra nước ngoài, earn-in / farm-in, mua cổ phần theo giai đoạn.</span></div>
+      </div>
+      <div class="pol__card pol__card--g ac-reveal ac-reveal--right" style="--i:3">
+        <div class="pol__tag">Nhóm năng lực vận động chính sách</div>
+        <div class="pitem"><span class="pitem__n">4</span><span class="pitem__t"><b>Đầu mối chuyên trách</b> về quan hệ chính phủ &amp; pháp lý.</span></div>
+        <div class="pitem"><span class="pitem__n">5</span><span class="pitem__t"><b>Tư vấn pháp lý</b> phục vụ các giao dịch quốc tế.</span></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 11 — Nhóm trọng yếu (3) QTRR–Nhân sự–KHCN/CĐS ========================= -->
+<section class="slide" data-chapter="3">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần IV · Đánh giá nhóm trọng yếu (3/3)</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">QTRR – KSNB · Nhân sự · <span class="neo">KHCN / CĐS</span></h2>
+    </div>
+    <div class="cards cards--3">
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:2"><span class="tri__k">① QTRR – KSNB</span>
+        <ul class="rlist rlist--warn"><li>Ban hành <b>KH QTRR 2026</b>; Hội thảo toàn PVEP (15/5).</li><li>Thư viện rủi ro chung; Hồ sơ rủi ro Quý II — <b>bản đồ nhiệt 4 loại</b>.</li><li>Lập Đoàn KTGS &amp; KTNB; lộ trình OECD.</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:3; border-top-color:var(--pvep-green)"><span class="tri__k">② Tổ chức – Nhân sự</span>
+        <ul class="rlist rlist--g"><li><b>QĐ 238</b> lập Ban mới.</li><li>CT đào tạo &amp; thu hút nhân tài 2026–2030 (<b>TBKL 186</b>).</li><li>Cơ chế <b>lương thí điểm (QĐ 472)</b>; bộ chỉ tiêu TFP/KPI.</li></ul></div>
+      <div class="tri__card ac-reveal ac-reveal--up" style="--i:4; border-top-color:var(--pvep-navy)"><span class="tri__k">③ KHCN – ĐMST – CĐS</span>
+        <ul class="rlist"><li>Chiến lược KHCN 2030/2050 (<b>QĐ 2439</b>).</li><li>Lộ trình CĐS 2026–2030 (<b>QĐ 2476</b>); ERP GĐ1 go-live 2026.</li><li>Mục tiêu KHCN đóng góp <b>8–9% doanh thu</b>.</li></ul></div>
+    </div>
+    <div class="ac-reveal" style="--i:5; display:grid; grid-template-columns:1.4fr 1fr; gap:clamp(.8rem,2vw,1.4rem); align-items:center">
+      <div>
+        <div class="cbar" style="margin-bottom:0"><div class="cbar__h"><span class="cbar__n">Chỉ số trưởng thành số · lộ trình đến 2030</span><span class="cbar__v">2,8 → 4,0</span></div><div class="cbar__track" style="position:relative"><div class="cbar__fill" style="width:56%"></div><u style="position:absolute; top:-4px; bottom:-4px; left:80%; width:3px; background:var(--pvep-navy); border-radius:2px"></u></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:clamp(.78rem,1.1vw,1rem); color:var(--ink-500); font-weight:600; margin-top:.3rem"><span>Hiện tại 2,8/5</span><span>Mục tiêu 4,0/5</span></div>
+      </div>
+      <div class="kpi3" style="margin-top:0; justify-content:flex-end"><span><b>ERP:</b> GĐ1 go-live 2026</span><span><b>KHCN:</b> 8–9% doanh thu</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Quy trình M&A") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center" style="margin-bottom:.4rem">
+      <div class="eyebrow ac-reveal" style="--i:0">Quy trình M&amp;A theo kinh nghiệm BCG · bấm từng giai đoạn</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Năm giai đoạn từ chiến lược đến <span class="neo-g">tích hợp</span></h2>
+    </div>
+    <div class="acc" id="maAcc">
+      <div class="acc__row open ac-reveal ac-reveal--up" style="--i:2">
+        <div class="acc__head"><span class="acc__no">1</span><span class="acc__t">Xây dựng chiến lược giao dịch tổng thể</span><svg class="acc__chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="acc__body"><div class="acc__inner"><ul class="rlist"><li>Tìm kiếm và sàng lọc cơ hội.</li><li>Đánh giá rủi ro trước khi tiếp cận.</li></ul></div></div>
+      </div>
+      <div class="acc__row ac-reveal ac-reveal--up" style="--i:3">
+        <div class="acc__head"><span class="acc__no">2</span><span class="acc__t">Chuẩn bị giao dịch</span><svg class="acc__chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="acc__body"><div class="acc__inner"><ul class="rlist"><li>Hoàn thiện hồ sơ, nguồn lực và phương án tiếp cận mục tiêu.</li></ul></div></div>
+      </div>
+      <div class="acc__row ac-reveal ac-reveal--up" style="--i:4">
+        <div class="acc__head"><span class="acc__no">3</span><span class="acc__t">Thực hiện và đàm phán</span><svg class="acc__chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="acc__body"><div class="acc__inner"><ul class="rlist"><li>NDA · thẩm định chi tiết.</li><li>Đàm phán cấu trúc và tài trợ.</li><li>HĐTV phê duyệt · ký kết.</li></ul></div></div>
+      </div>
+      <div class="acc__row ac-reveal ac-reveal--up" style="--i:5">
+        <div class="acc__head"><span class="acc__no">4</span><span class="acc__t">Giai đoạn sau ký đến hoàn tất</span><svg class="acc__chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="acc__body"><div class="acc__inner"><ul class="rlist"><li>Phê duyệt của cơ quan quản lý.</li><li>Lập kế hoạch tích hợp sau sáp nhập (PMI).</li></ul></div></div>
+      </div>
+      <div class="acc__row ac-reveal ac-reveal--up" style="--i:6">
+        <div class="acc__head"><span class="acc__no">5</span><span class="acc__t">Tích hợp</span><svg class="acc__chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="acc__body"><div class="acc__inner"><ul class="rlist"><li>KPI tích hợp.</li><li>Quản lý như một doanh nghiệp thống nhất.</li></ul></div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 12 — Kiến nghị & phối hợp Petrovietnam ========================= -->
+<section class="slide" data-chapter="3">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần IV · Kiến nghị &amp; phối hợp Petrovietnam</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">14 kiến nghị vượt thẩm quyền — <span class="neo-g">06 đã được phê duyệt</span></h2>
+    </div>
+    <div class="ac-reveal" style="--i:2; display:grid; grid-template-columns:auto 1fr; gap:clamp(1rem,3vw,2.2rem); align-items:center">
+      <div class="stat stat--n" style="padding:clamp(1rem,2.2vw,1.6rem) clamp(1.4rem,3vw,2.4rem)">
+        <div class="stat__n">14</div><div class="stat__l">Nội dung kiến nghị<br>vượt thẩm quyền</div>
+      </div>
+      <div>
+        <div class="cbar cbar--g" style="margin-bottom:.35rem"><div class="cbar__h"><span class="cbar__n">Tiến độ phê duyệt của Petrovietnam</span><span class="cbar__v">06/14</span></div><div class="cbar__track"><div class="cbar__fill" style="width:43%"></div></div></div>
+        <div class="statuslegend" style="justify-content:flex-start"><span><i style="background:var(--pvep-green)"></i>Đã phê duyệt · <b>06</b></span><span><i style="background:var(--caution)"></i>Đang xem xét · <b>04</b></span></div>
+      </div>
+    </div>
+    <div class="pol">
+      <div class="pol__card pol__card--g ac-reveal ac-reveal--left" style="--i:3">
+        <div class="pol__tag">🟢 Đã được phê duyệt (06)</div>
+        <div class="pitem"><span class="pitem__n">1</span><span class="pitem__t"><b>Quỹ lương 2025</b></span></div>
+        <div class="pitem"><span class="pitem__n">2</span><span class="pitem__t"><b>Chuyển nhượng QLTG</b> Lô 01/10 &amp; 02/10</span></div>
+        <div class="pitem"><span class="pitem__n">3</span><span class="pitem__t"><b>Kế hoạch 5 năm</b> 2026–2030</span></div>
+        <div class="pitem"><span class="pitem__n">4</span><span class="pitem__t"><b>Huy động vốn</b> Khánh Mỹ–Đầm Dơi</span></div>
+        <div class="pitem"><span class="pitem__n">5</span><span class="pitem__t"><b>BCTC sau kiểm toán</b> &amp; phân phối LN 2025</span></div>
+        <div class="pitem"><span class="pitem__n">6</span><span class="pitem__t"><b>Bổ sung ngành nghề</b> (khoáng sản đáy biển, CCS/CCUS, điện gió ngoài khơi)</span></div>
+      </div>
+      <div class="pol__card ac-reveal ac-reveal--right" style="--i:4; border-color:rgba(217,119,6,.4)">
+        <div class="pol__tag" style="color:var(--caution)">🟠 Đang xem xét (04)</div>
+        <div class="pitem"><span class="pitem__n" style="background:linear-gradient(135deg,var(--caution),#b45309)">1</span><span class="pitem__t"><b>Tăng vốn điều lệ</b> (~1 tỷ USD)</span></div>
+        <div class="pitem"><span class="pitem__n" style="background:linear-gradient(135deg,var(--caution),#b45309)">2</span><span class="pitem__t"><b>Chiến lược 2030/2050</b></span></div>
+        <div class="pitem"><span class="pitem__n" style="background:linear-gradient(135deg,var(--caution),#b45309)">3</span><span class="pitem__t"><b>HĐDK Sông Đốc</b></span></div>
+        <div class="pitem"><span class="pitem__n" style="background:linear-gradient(135deg,var(--caution),#b45309)">4</span><span class="pitem__t"><b>Ngành nghề PVEP Sông Hồng</b></span></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Gantt 2026–2030") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center" style="margin-bottom:.25rem">
+      <div class="eyebrow ac-reveal" style="--i:0">Phụ lục kế hoạch thực hiện · bấm để lọc nhóm công việc</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Lộ trình triển khai <span class="neo">2026–2030</span></h2>
+      <div class="iz-seg ac-reveal" id="gSeg" style="--i:2">
+        <button data-g="all" class="on">Tất cả</button>
+        <button data-g="a">Chiến lược thâm nhập</button>
+        <button data-g="b">Danh mục cơ hội</button>
+        <button data-g="c">Thương vụ đầu tiên</button>
+        <button data-g="d">Mở rộng quốc tế</button>
+      </div>
+    </div>
+    <div class="gantt ac-reveal" style="--i:3">
+      <div class="g-head"><span></span>
+        <div class="g-years"><span>2026</span><span>2027</span><span>2028</span><span>2029</span><span>2030</span></div>
+      </div>
+      <div class="g-body" id="gBody">
+        <div class="g-mslines" aria-hidden="true">
+          <div class="g-msline" style="--x:10%" data-l="◆ Thị trường ưu tiên"></div>
+          <div class="g-msline" style="--x:35%" data-l="◆ Thương vụ đầu tiên"></div>
+          <div class="g-msline" style="--x:45%" data-l="◆ Đơn vị TD&amp;KT QT"></div>
+        </div>
+        <div class="g-row" data-g="a"><div class="g-lbl"><b>Xác định mục tiêu &amp; nguyên tắc định hướng</b><small>Q2/2026 (1 tháng) · Ban TDKT; Chiến lược</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:5%; --w:5%; --i:1"></span></div></div>
+        <div class="g-row" data-g="a"><div class="g-lbl"><b>Khung sàng lọc &amp; đánh giá tài sản</b><small>Q2/2026 (1 tháng) · Ban TDKT; KTĐT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:5%; --w:5%; --i:2"></span></div></div>
+        <div class="g-row" data-g="a"><div class="g-lbl"><b>Xác định thị trường ưu tiên &amp; lộ trình thâm nhập</b><small>Q2/2026 (2 tháng) · Ban TDKT; Chiến lược</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:5%; --w:5%; --i:3"></span></div></div>
+        <div class="g-row" data-g="a"><div class="g-lbl"><b>Điều phối hợp tác G2G</b><small>Q3/2026 – Q3/2027, sau đó duy trì · Ban Chiến lược; QH Đối tác, QH Chính phủ</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:10%; --w:25%; --i:4"></span><span class="g-bar g-bar--ext ac-fill-x" style="--l:35%; --w:65%; --i:5"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Danh sách ngắn công ty tiếp cận ban đầu</b><small>Q2/2026 (1 tháng) · Ban TDKT, KTĐT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:5%; --w:5%; --i:5"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Xác nhận phù hợp chiến lược / văn hóa</b><small>Q3/2026 (2 tháng) · Ban TDKT, Chiến lược</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:10%; --w:5%; --i:6"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Thẩm định kỹ thuật – thương mại – pháp lý</b><small>Q3/2026 – Q1/2027 · Ban TDKT, TMDV, PCĐT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:10%; --w:15%; --i:7"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Chiến lược tài chính &amp; đảm bảo nguồn vốn</b><small>Q3/2026 – Q4/2026 · Ban TDKT, KTĐT, TCKT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:10%; --w:10%; --i:8"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Phê duyệt HĐTV Petrovietnam &amp; cơ quan Nhà nước</b><small>Q2/2027 (1 tháng) · Ban TDKT, KTĐT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:25%; --w:5%; --i:9"></span></div></div>
+        <div class="g-row" data-g="b"><div class="g-lbl"><b>Tiêu chuẩn PMI toàn Tập đoàn</b><small>Q1/2027 – Q3/2027, sau đó duy trì đến 2030 · Bộ phận M&amp;A, Ban Chiến lược</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:20%; --w:15%; --i:10"></span><span class="g-bar g-bar--ext ac-fill-x" style="--l:35%; --w:65%; --i:11"></span></div></div>
+        <div class="g-row" data-g="c"><div class="g-lbl"><b>Thực hiện giao dịch</b><small>Q2/2027 – Q3/2027 (5 tháng) · Ban TDKT, bộ phận M&amp;A</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:25%; --w:10%; --i:11"></span></div></div>
+        <div class="g-row" data-g="c"><div class="g-lbl"><b>Tích hợp sau sáp nhập (PMI)</b><small>Q4/2027 – Q3/2028 · Ban TDKT, bộ phận M&amp;A</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:35%; --w:20%; --i:12"></span></div></div>
+        <div class="g-row" data-g="d"><div class="g-lbl"><b>Thành lập đơn vị TDKT quốc tế chuyên trách</b><small>Q2/2027 – Q1/2028 · Ban TDKT, QTNNL, đơn vị thành viên</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:25%; --w:20%; --i:13"></span></div></div>
+        <div class="g-row" data-g="d"><div class="g-lbl"><b>Đa dạng hóa nguồn tài chính</b><small>Q3/2027 – Q2/2028 · Ban TCKT, KTĐT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:30%; --w:20%; --i:14"></span></div></div>
+        <div class="g-row" data-g="d"><div class="g-lbl"><b>Đánh giá cơ hội tăng trưởng khu vực liền kề</b><small>Q2/2028 – Q1/2029, sau đó duy trì đến 2030 · Ban TDKT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:45%; --w:20%; --i:15"></span><span class="g-bar g-bar--ext ac-fill-x" style="--l:65%; --w:35%; --i:16"></span></div></div>
+        <div class="g-row" data-g="d"><div class="g-lbl"><b>Liên minh chiến lược với NOC/IOC</b><small>Q2/2028 đến 2030 · Ban Chiến lược, TDKT</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:45%; --w:55%; --i:17"></span></div></div>
+        <div class="g-row" data-g="d"><div class="g-lbl"><b>Giám sát PMI trong lĩnh vực kinh doanh mới</b><small>Q4/2027 đến 2030 · Ban TDKT, bộ phận M&amp;A</small></div><div class="g-track"><span class="g-bar ac-fill-x" style="--l:35%; --w:65%; --i:18"></span></div></div>
+      </div>
+      <div class="g-legend">
+        <span><i class="la"></i>Chiến lược thâm nhập</span>
+        <span><i class="lb"></i>Danh mục cơ hội</span>
+        <span><i class="lc"></i>Thương vụ đầu tiên</span>
+        <span><i class="ld"></i>Mở rộng quốc tế</span>
+        <span><i class="le"></i>Duy trì / theo cơ hội</span>
+        <span style="color:var(--pvep-green)">◆ Mốc ưu tiên</span>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 13 — Tác động tổng thể của HĐTV ========================= -->
+<section class="slide" data-chapter="4">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần V · Tác động tổng thể</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Từ <span class="neo">chỉ đạo của HĐTV</span> đến kết quả thực thi</h2>
+    </div>
+    <div class="flowband ac-reveal" style="--i:2">
+      <span class="fb">Chỉ đạo của HĐTV</span><span class="fb-arrow">➜</span><span class="fb" style="color:var(--pvep-green)">Kết quả thực thi</span>
+    </div>
+    <div class="cards cards--3">
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:3"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></div><h4>Tác động SXKD 6T</h4><p>Khuôn khổ điều hành có trọng tâm → <b>SXKD vượt KH 6 tháng</b>.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:4"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><h4>Hoàn thành KH năm</h4><p>LNST <b>đã đạt KH năm</b>; gia tăng trữ lượng (~34%) &amp; đầu tư (~38%) còn rủi ro.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:5"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h4>Nền tảng KH 5 năm</h4><p>Đặt nền danh mục dự án, nguồn vốn, tổ chức, QTRR, KHCN/CĐS cho <b>2026–2030</b>.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:6"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div><h4>Tác động Tài chính</h4><p>Đưa vốn thành <b>rủi ro chiến lược cấp cao nhất</b>; phương án vốn theo dự án/kịch bản dòng tiền.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:7"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Tác động QTRR</h4><p>Nâng kỷ luật quản trị; gắn <b>OECD – ESG – TFP/KPI</b>.</p></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:8"><div class="card4__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div><h4>CNTT &amp; CĐS</h4><p>ERP + nền tảng dữ liệu E&amp;P → <b>dashboard quản trị cấp HĐTV</b>.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= (ĐÃ GỠ — slide cũ "Mốc then chốt & nguồn lực") ========================= -->
+<section style="display:none" aria-hidden="true">
+  <div><div>
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Ba mốc ưu tiên · nguồn lực</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Từ thị trường ưu tiên đến <span class="neo">đơn vị TD&amp;KT quốc tế</span></h2>
+    </div>
+    <div class="ms-grid">
+      <div class="ms-card ac-reveal ac-reveal--up" style="--i:2">
+        <div class="ms-q">Quý 2/2026</div>
+        <div class="ms-t">Xác định thị trường ưu tiên</div>
+        <div class="ms-d">Chốt danh sách thị trường và mục tiêu chủ chốt sau sàng lọc.</div>
+      </div>
+      <div class="ms-card ac-reveal ac-reveal--up" style="--i:3">
+        <div class="ms-q">Quý 3/2027</div>
+        <div class="ms-t">Hoàn tất thương vụ đầu tiên</div>
+        <div class="ms-d">Ký kết và hoàn thành thương vụ mua lại tài sản thượng nguồn quốc tế đầu tiên.</div>
+      </div>
+      <div class="ms-card ac-reveal ac-reveal--up" style="--i:4">
+        <div class="ms-q">Quý 1/2028</div>
+        <div class="ms-t">Thành lập đơn vị TD&amp;KT quốc tế</div>
+        <div class="ms-d">Đơn vị chuyên trách vận hành và nhân rộng có chọn lọc.</div>
+      </div>
+    </div>
+    <div class="kpi3 ac-reveal" style="--i:5">
+      <span><b>Vốn:</b> 5–10 tỷ USD huy động đa kênh</span>
+      <span><b>Đội ngũ triển khai:</b> PVEP · công ty con/liên doanh mới · các ban Tài chính, Chiến lược, KTĐT · bộ phận M&amp;A</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 14 — Tồn tại, hạn chế & 8 nhóm rủi ro ========================= -->
+<section class="slide" data-chapter="5">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần VI · Tồn tại, hạn chế &amp; rủi ro</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Tồn tại, hạn chế &amp; <span style="color:var(--danger)">8 nhóm rủi ro</span> cần giám sát</h2>
+    </div>
+    <div class="en-grid en-grid--4">
+      <div class="en ac-reveal ac-reveal--up" style="--i:2; border-left:5px solid var(--danger)"><div class="en__h"><span class="en__no">1</span><span class="en__t">Thị trường &amp; tài chính</span></div><div class="en__d">Giá dầu · tỷ giá · lãi suất.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:3; border-left:5px solid var(--warning)"><div class="en__h"><span class="en__no">2</span><span class="en__t">Sản lượng &amp; khai thác</span></div><div class="en__d">Mỏ suy giảm tự nhiên.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:4; border-left:5px solid var(--caution)"><div class="en__h"><span class="en__no">3</span><span class="en__t">Tiến độ đầu tư &amp; giải ngân</span></div><div class="en__d">Tiến độ PTM, gói thầu.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:5; border-left:5px solid var(--danger)"><div class="en__h"><span class="en__no">4</span><span class="en__t">Thu xếp vốn &amp; tài chính</span></div><div class="en__d">Áp lực vốn 2026–2028.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:6; border-left:5px solid var(--warning)"><div class="en__h"><span class="en__no">5</span><span class="en__t">M&amp;A &amp; đầu tư nước ngoài</span></div><div class="en__d">Giải ngân ĐTNN 0%.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:7; border-left:5px solid var(--caution)"><div class="en__h"><span class="en__no">6</span><span class="en__t">Pháp lý &amp; tuân thủ</span></div><div class="en__d">Ký PSC / JOA.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:8; border-left:5px solid var(--pvep-blue)"><div class="en__h"><span class="en__no">7</span><span class="en__t">CNTT &amp; chuyển đổi số</span></div><div class="en__d">ERP go-live đúng hạn.</div></div>
+      <div class="en ac-reveal ac-reveal--up" style="--i:9; border-left:5px solid var(--pvep-blue)"><div class="en__h"><span class="en__no">8</span><span class="en__t">Nhân sự &amp; năng lực thực thi</span></div><div class="en__d">Giữ &amp; thu hút chuyên gia.</div></div>
+    </div>
+    <div class="ac-reveal" style="--i:10; display:grid; grid-template-columns:1fr 1fr; gap:clamp(.7rem,1.6vw,1.1rem)">
+      <div class="insight warn"><div><span class="ins-t">Hạn chế quản trị</span><p>Nhiều nhiệm vụ "đang thực hiện" chưa rõ tiến độ · chưa thống nhất tiêu chí hoàn thành · chưa có dashboard cấp HĐTV.</p></div></div>
+      <div class="insight"><div><span class="ins-t">Vượt thẩm quyền — cần Petrovietnam</span><p>Tăng VĐL · Lô 11-2 · phê duyệt dự án/ĐT/M&amp;A · cơ chế ĐTNN · ngành nghề · nhân sự · OECD.</p></div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE 15 — Chỉ đạo trọng tâm 6 tháng cuối năm ========================= -->
+<section class="slide" data-chapter="6">
+  <div class="slide-content"><div class="wrap wrap--wide">
+    <div class="head-center">
+      <div class="eyebrow ac-reveal" style="--i:0">Phần VII · Chỉ đạo 6 tháng cuối năm 2026</div>
+      <h2 class="s-title s-title--sm ac-reveal" style="--i:1">Giữ vững kết quả · Bảo đảm mốc FO/FG · <span class="neo">Nâng chuẩn quản trị</span></h2>
+    </div>
+    <div class="cards cards--3">
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:2"><h4>1 · SXKD &amp; tài chính</h4><ul class="rlist"><li>Giữ &amp; vượt KH; quản trị theo kịch bản giá dầu.</li><li>Điều hành linh hoạt bán dầu thô.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:3"><h4>2 · Đầu tư &amp; tiến độ dự án</h4><ul class="rlist"><li>Bảo đảm FG STT 2B, FO Lạc Đà Vàng; FO/FG 2027.</li><li>Cảnh báo sớm chậm tiến độ – vượt chi phí.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:4"><h4>3 · M&amp;A &amp; dự án nước ngoài</h4><ul class="rlist"><li>Quản trị pipeline theo ưu tiên; chuẩn hóa sàng lọc.</li><li>Chốt mục tiêu ký dự án mới ở nước ngoài 2026.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:5"><h4>4 · Vốn, dòng tiền &amp; tăng VĐL</h4><ul class="rlist"><li>KH vốn theo dự án; IFRS, xếp hạng tín nhiệm.</li><li>Thúc đẩy tăng VĐL &amp; xử lý Lô 11-2.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:6"><h4>5 · Nhân sự, QTRR &amp; KSNB</h4><ul class="rlist"><li>Áp dụng OECD cuối 2026; vận hành TFP/KPI; tích hợp ESG.</li><li>Dashboard rủi ro cấp HĐTV.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:7"><h4>6 · KHCN &amp; CĐS</h4><ul class="rlist"><li>Giám sát ERP go-live; trưởng thành số → 4,0 (2030).</li><li>Lượng hóa đóng góp KHCN.</li></ul></div>
+      <div class="card4 ac-reveal ac-reveal--up" style="--i:8; grid-column:1 / -1; border-top:4px solid var(--pvep-navy)"><h4>7 · Kiến nghị Petrovietnam</h4><div class="iconrow" style="justify-content:flex-start; margin-top:.3rem"><span class="ic">Thúc đẩy tăng VĐL</span><span class="ic">Ngành nghề PVEP Sông Hồng</span><span class="ic">HĐDK Sông Đốc (PVEP 100%)</span></div></div>
+    </div>
+    <div class="flowband ac-reveal" style="--i:9; background:linear-gradient(135deg,var(--pvep-navy),var(--pvep-blue)); border:0">
+      <span class="fb" style="color:#fff; letter-spacing:.04em">CAM KẾT CỦA HĐTV</span>
+      <span class="fb-arrow" style="color:rgba(255,255,255,.8)">➜</span>
+      <span class="fb" style="color:rgba(255,255,255,.95); font-weight:700">Giữ vững kết quả · Bảo đảm mốc FO/FG · Nâng chuẩn quản trị</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ========================= SLIDE chốt — Trân trọng cảm ơn ========================= -->
+<section class="slide" data-chapter="6">
+  <div class="slide-content"><div class="wrap" style="text-align:center">
+    <img src="PVEP.png" style="height:58px; width:auto; object-fit:contain; margin-bottom:1.2rem; --i:0;" alt="PVEP Logo" class="ac-reveal" />
+    <div class="end__big ac-reveal" style="--i:1">TRÂN TRỌNG CẢM ƠN</div>
+    <div class="hero__by ac-reveal" style="--i:2">Hội đồng Thành viên PVEP · Báo cáo 6 tháng đầu năm 2026</div>
+  </div></div>
+</section>
+
+<script>
+/* =====================================================================
+   activate.js — adds .ac-on when a slide is visible; count-up; replays
+   ===================================================================== */
+(function () {
+  "use strict";
+  var SLIDE_SELECTOR = ".slide";
+  var VISIBLE_RATIO  = 0.55;
+  var reduceMotion   = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function formatNum(v, decimals){ return Number(v).toLocaleString("vi-VN", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }); }
+  function runCount(el){
+    var to = parseFloat(el.getAttribute("data-count-to")); if (isNaN(to)) return;
+    var from = parseFloat(el.getAttribute("data-count-from")) || 0;
+    var dur = parseFloat(el.getAttribute("data-count-dur")) || 1400;
+    var decimals = parseInt(el.getAttribute("data-count-decimals") || "0", 10);
+    var prefix = el.getAttribute("data-count-prefix") || "";
+    var suffix = el.getAttribute("data-count-suffix") || "";
+    if (reduceMotion){ el.textContent = prefix + formatNum(to, decimals) + suffix; return; }
+    var start = null; if (el._raf) cancelAnimationFrame(el._raf);
+    function step(ts){ if (start === null) start = ts; var p = Math.min((ts - start) / dur, 1);
+      var v = from + (to - from) * easeOutCubic(p); el.textContent = prefix + formatNum(v, decimals) + suffix;
+      if (p < 1) el._raf = requestAnimationFrame(step); }
+    el._raf = requestAnimationFrame(step);
+  }
+  function resetCount(el){
+    if (el._raf) cancelAnimationFrame(el._raf);
+    var from = parseFloat(el.getAttribute("data-count-from")) || 0;
+    var decimals = parseInt(el.getAttribute("data-count-decimals") || "0", 10);
+    var prefix = el.getAttribute("data-count-prefix") || "";
+    var suffix = el.getAttribute("data-count-suffix") || "";
+    el.textContent = prefix + formatNum(from, decimals) + suffix;
+  }
+  function activate(slide){ if (slide.hasAttribute("data-hero")) document.body.classList.add("hero-active");
+    if (slide.classList.contains("ac-on")) return; slide.classList.add("ac-on");
+    var nums = slide.querySelectorAll("[data-count-to]"); for (var i=0;i<nums.length;i++) runCount(nums[i]); }
+  function deactivate(slide){ if (slide.hasAttribute("data-hero")) document.body.classList.remove("hero-active");
+    slide.classList.remove("ac-on");
+    var nums = slide.querySelectorAll("[data-count-to]"); for (var i=0;i<nums.length;i++) resetCount(nums[i]); }
+  function init(){
+    var slides = document.querySelectorAll(SLIDE_SELECTOR); if (!slides.length) return;
+    var allNums = document.querySelectorAll("[data-count-to]"); for (var n=0;n<allNums.length;n++) resetCount(allNums[n]);
+    if (!("IntersectionObserver" in window)){ for (var k=0;k<slides.length;k++) activate(slides[k]); return; }
+    var io = new IntersectionObserver(function (entries){
+      entries.forEach(function (e){ if (e.isIntersecting && e.intersectionRatio >= VISIBLE_RATIO) activate(e.target); else deactivate(e.target); });
+    }, { threshold: [0, VISIBLE_RATIO, 1] });
+    for (var s=0;s<slides.length;s++) io.observe(slides[s]);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+
+/* =====================================================================
+   Deck controller — rail, counter, progress, keyboard nav
+   ===================================================================== */
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var total  = slides.length;
+  var railItems = Array.prototype.slice.call(document.querySelectorAll(".rail__item"));
+  var curEl = document.getElementById("cur");
+  var totEl = document.getElementById("tot");
+  var fill  = document.getElementById("progressFill");
+  var current = 0;
+  totEl.textContent = total;
+
+  function setCurrent(i){
+    current = Math.max(0, Math.min(total - 1, i));
+    curEl.textContent = current + 1;
+    fill.style.width = ((current + 1) / total * 100) + "%";
+    var fp = document.getElementById("footPage"); if (fp) fp.textContent = current + 1;
+    var ft = document.getElementById("footTot"); if (ft) ft.textContent = total;
+    var ch = slides[current].getAttribute("data-chapter");
+    railItems.forEach(function(el){ el.classList.toggle("is-active", el.getAttribute("data-chapter") === ch); });
+  }
+  function goTo(i){
+    var t = Math.max(0, Math.min(total - 1, i));
+    slides[t].scrollIntoView({ behavior: "smooth", block: "start" });
+    setCurrent(t);
+  }
+  var io2 = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting && e.intersectionRatio >= 0.55){
+        var idx = slides.indexOf(e.target); if (idx >= 0) setCurrent(idx);
+      }
+    });
+  }, { threshold: [0.55] });
+  slides.forEach(function(s){ io2.observe(s); });
+
+  document.addEventListener("keydown", function(e){
+    if (["ArrowRight","ArrowDown","PageDown"," "].indexOf(e.key) !== -1){ e.preventDefault(); goTo(current + 1); }
+    else if (["ArrowLeft","ArrowUp","PageUp"].indexOf(e.key) !== -1){ e.preventDefault(); goTo(current - 1); }
+    else if (e.key === "Home"){ e.preventDefault(); goTo(0); }
+    else if (e.key === "End"){ e.preventDefault(); goTo(total - 1); }
+  });
+  railItems.forEach(function(el){
+    el.addEventListener("click", function(){ goTo(parseInt(el.getAttribute("data-target"), 10)); });
+  });
+  setCurrent(0);
+})();
+
+/* =====================================================================
+   Typewriter for the hero tagline
+   ===================================================================== */
+(function(){
+  function type(el){
+    var full = el.getAttribute("data-text"), i = 0; el.textContent = "";
+    el.classList.add("ac-caret");
+    (function tick(){ if (i <= full.length){ el.textContent = full.slice(0, i++); setTimeout(tick, 30); }
+      else { setTimeout(function(){ el.classList.remove("ac-caret"); }, 1200); } })();
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ type(e.target); } else { e.target.textContent = ""; } });
+  }, { threshold: .6 });
+  document.querySelectorAll(".jtype").forEach(function(el){ io.observe(el); });
+})();
+
+/* =====================================================================
+   Mobile swipe hint
+   ===================================================================== */
+(function(){
+  var hint = document.getElementById("mhint"); if (!hint) return;
+  var hide = function(){ hint.classList.add("is-hidden"); cleanup(); };
+  function cleanup(){
+    window.removeEventListener("touchmove", hide, { passive:true });
+    window.removeEventListener("scroll", hide, true);
+  }
+  window.addEventListener("touchmove", hide, { passive:true });
+  window.addEventListener("scroll", hide, true);
+  setTimeout(hide, 6000);
+})();
+
+/* =====================================================================
+   Hero video — retry autoplay on mobile
+   ===================================================================== */
+(function(){
+  var v = document.getElementById("heroVideo");
+  if (!v) return;
+  v.muted = true; v.defaultMuted = true; v.playsInline = true;
+  function tryPlay(){
+    var p = v.play();
+    if (p && typeof p.catch === "function") p.catch(function(){ /* chờ chạm */ });
+  }
+  tryPlay();
+  if ("IntersectionObserver" in window){
+    var heroSlide = v.closest(".slide");
+    if (heroSlide){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) tryPlay(); });
+      }, { threshold:[0.4] }).observe(heroSlide);
+    }
+  }
+  function kick(){ tryPlay(); }
+  ["touchstart","click","pointerdown"].forEach(function(ev){
+    document.addEventListener(ev, kick, { once:true, passive:true });
+  });
+})();
+
+/* =====================================================================
+   Print / Export PDF — bật mọi slide & chốt số liệu trước khi in
+   ===================================================================== */
+(function(){
+  function finalizeCounts(){
+    document.querySelectorAll("[data-count-to]").forEach(function(el){
+      var to = parseFloat(el.getAttribute("data-count-to")); if (isNaN(to)) return;
+      var dec = parseInt(el.getAttribute("data-count-decimals") || "0", 10);
+      var pre = el.getAttribute("data-count-prefix") || "";
+      var suf = el.getAttribute("data-count-suffix") || "";
+      el.textContent = pre + Number(to).toLocaleString("vi-VN",
+        { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+    });
+  }
+  function prep(){
+    document.querySelectorAll(".slide").forEach(function(s){ s.classList.add("ac-on"); });
+    document.querySelectorAll(".acc__row").forEach(function(r){ r.classList.add("open"); });
+    finalizeCounts();
+  }
+  window.addEventListener("beforeprint", prep);
+  if (window.matchMedia){
+    var mq = window.matchMedia("print");
+    (mq.addEventListener ? mq.addEventListener.bind(mq,"change") : mq.addListener.bind(mq))(function(e){ if (e.matches) prep(); });
+  }
+})();
+
+/* =====================================================================
+   INTERACTIVE — stepper 5 bước · bản đồ thị trường · accordion M&A · Gantt filter
+   ===================================================================== */
+(function(){
+  "use strict";
+  var $  = function(s,r){ return (r||document).querySelector(s); };
+  var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+  /* ---------- A. Quy trình tiếp cận 5 bước ---------- */
+  (function(){
+    var host = $('#s5Steps'); if (!host) return;
+    var DATA = [
+      { t:'Lập bản đồ trữ lượng toàn cầu', d:'Rà soát các lưu vực và khu vực có trữ lượng phù hợp trên phạm vi toàn cầu, làm cơ sở khoanh vùng quốc gia và lưu vực mục tiêu.' },
+      { t:'Sàng lọc theo tiêu chí đầu tư', d:'Bốn tiêu chí sàng lọc: quốc gia · độ khó khai thác · quy mô tài sản · kỷ luật vốn.' },
+      { t:'Đánh giá đối tác / công ty', d:'Đánh giá theo chiến lược thâu tóm, uy tín đối tác, cấu trúc giao dịch và bản đồ quy trình phê duyệt.' },
+      { t:'Tiếp cận ban đầu', d:'Làm việc với danh sách ngắn các công ty đã qua sàng lọc; xác nhận mức độ phù hợp chiến lược và văn hóa với yêu cầu của Petrovietnam.' },
+      { t:'Thẩm định và phê duyệt đầu tư', d:'Thẩm định kỹ thuật – thương mại – pháp lý, sau đó trình phê duyệt đầu tư theo quy trình của Tập đoàn.' }
+    ];
+    var steps = $$('.s5__step', host), fill = $('#s5Fill'),
+        no = $('#stepNo'), tt = $('#stepT'), dd = $('#stepD'), box = $('#stepInfo');
+    function show(i){
+      steps.forEach(function(b,k){ b.classList.toggle('on', k === i); });
+      fill.style.width = (i / (DATA.length - 1) * 100) + '%';
+      no.textContent = i + 1; tt.textContent = DATA[i].t; dd.textContent = DATA[i].d;
+      box.classList.remove('flash-in'); void box.offsetWidth; box.classList.add('flash-in');
+    }
+    steps.forEach(function(b){ b.addEventListener('click', function(){ show(parseInt(b.getAttribute('data-s'),10)); }); });
+    show(0);
+  })();
+
+  /* ---------- B. Bản đồ thị trường ---------- */
+  (function(){
+    var chart = $('#mkChart'); if (!chart) return;
+    var DATA = {
+      uae:        { n:'UAE',        g:'safe', items:['Nhóm thị trường ổn định nhưng cạnh tranh cao.','Gia nhập thông qua hợp tác với IOC, nắm cổ phần thiểu số.','Phù hợp đa dạng hóa dòng tiền; hạn chế là ít quyền điều hành.'] },
+      kuwait:     { n:'Kuwait',     g:'safe', items:['Nhóm thị trường ổn định nhưng cạnh tranh cao.','Gia nhập thông qua hợp tác với IOC, nắm cổ phần thiểu số.','Cũng nằm trong nhóm thị trường đối tác cho mục tiêu 1–2 tài sản thượng nguồn lớn.'] },
+      qatar:      { n:'Qatar',      g:'safe', items:['Nhóm thị trường ổn định nhưng cạnh tranh cao.','Gia nhập thông qua hợp tác với IOC, nắm cổ phần thiểu số.','Phù hợp đa dạng hóa dòng tiền; hạn chế là ít quyền điều hành.'] },
+      algeria:    { n:'Algeria',    g:'risk', items:['Nhóm thị trường giàu tài nguyên nhưng rủi ro cao.','Theo đuổi chọn lọc các cơ hội quy mô lớn.','Giảm rủi ro qua liên minh và kênh G2G.'] },
+      egypt:      { n:'Ai Cập',     g:'risk', items:['Nhóm thị trường giàu tài nguyên nhưng rủi ro cao.','Theo đuổi chọn lọc các cơ hội quy mô lớn; giảm rủi ro qua liên minh và kênh G2G.','Nằm trong nhóm thị trường đối tác cho mục tiêu 1–2 tài sản thượng nguồn lớn.'] },
+      kazakhstan: { n:'Kazakhstan', g:'risk', items:['Nhóm thị trường giàu tài nguyên nhưng rủi ro cao.','Theo đuổi chọn lọc các cơ hội quy mô lớn.','Giảm rủi ro qua liên minh và kênh G2G.'] },
+      russia:     { n:'Nga',        g:'ru',   items:['Thị trường có hoạt động hiện hữu của Petrovietnam.'] }
+    };
+    var BADGE = { safe:{t:'Ổn định · cạnh tranh cao', c:''}, risk:{t:'Giàu tài nguyên · rủi ro cao', c:'mk-badge--risk'}, ru:{t:'Hiện hữu PVN', c:'mk-badge--ru'} };
+    var dots = $$('.mk-dot', chart), chips = $$('#mkChips .mk-chip'),
+        name = $('#mkName'), badge = $('#mkBadge'), list = $('#mkList'), panel = $('#mkPanel');
+    function show(c){
+      var d = DATA[c]; if (!d) return;
+      dots.forEach(function(el){ el.classList.toggle('on', el.getAttribute('data-c') === c); });
+      chips.forEach(function(el){ el.classList.toggle('on', el.getAttribute('data-c') === c); });
+      name.textContent = d.n;
+      badge.textContent = BADGE[d.g].t;
+      badge.className = 'mk-badge ' + BADGE[d.g].c;
+      list.innerHTML = d.items.map(function(t){ return '<li>' + t + '</li>'; }).join('');
+      panel.classList.remove('flash-in'); void panel.offsetWidth; panel.classList.add('flash-in');
+    }
+    dots.concat(chips).forEach(function(el){
+      el.addEventListener('click', function(){ show(el.getAttribute('data-c')); });
+    });
+    show('uae');
+  })();
+
+  /* ---------- C. Accordion M&A ---------- */
+  (function(){
+    var acc = $('#maAcc'); if (!acc) return;
+    $$('.acc__row', acc).forEach(function(row){
+      $('.acc__head', row).addEventListener('click', function(){
+        var wasOpen = row.classList.contains('open');
+        $$('.acc__row', acc).forEach(function(r){ r.classList.remove('open'); });
+        if (!wasOpen) row.classList.add('open');
+      });
+    });
+  })();
+
+  /* ---------- D. Gantt filter ---------- */
+  (function(){
+    var seg = $('#gSeg'); if (!seg) return;
+    var rows = $$('#gBody .g-row');
+    $$('button', seg).forEach(function(b){
+      b.addEventListener('click', function(){
+        $$('button', seg).forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on');
+        var g = b.getAttribute('data-g');
+        rows.forEach(function(r){
+          r.classList.toggle('is-hide', g !== 'all' && r.getAttribute('data-g') !== g);
+        });
+      });
+    });
+  })();
+})();
+</script>
+</body>
+</html>
